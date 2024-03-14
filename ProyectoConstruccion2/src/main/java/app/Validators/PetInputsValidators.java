@@ -2,8 +2,8 @@ package app.Validators;
 
 public class PetInputsValidators extends InputsValidators {
 
-	public void productNameValidators(String productName)throws Exception {
-		super.stringValidator(productName, " nombre de la mascota");
+	public void namePetValidator(String namePet)throws Exception {
+		super.stringValidator(namePet, " nombre de la mascota");
 	}
 	
 	public void ownerValidator(String owner)throws Exception {
@@ -33,6 +33,4 @@ public class PetInputsValidators extends InputsValidators {
 	public double weightValidators(String weight)throws Exception {
 		return super.doubleValidator(weight, " peso");
 	}
-	
-	
 }

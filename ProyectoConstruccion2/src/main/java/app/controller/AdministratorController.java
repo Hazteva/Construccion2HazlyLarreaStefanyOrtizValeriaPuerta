@@ -1,6 +1,7 @@
 package app.controller;
 
-import java.util.Scanner;
+import java.util.Scanner; 
+
 import app.service.AdministratorService;
 import app.service.VetService;
 import app.Validators.PersonInputsValidator;
@@ -13,6 +14,7 @@ public class AdministratorController {
 	private static final String MENU = "ingrese\n1.Para crear usuario\n2.Para cerrar Sesion";
 	
 	public void createUser()throws Exception {
+		
 		System.out.println("Ingrese el nombre completo");
 		String fullName = reader.nextLine();
 		personInputValidator.fullNameValidator(fullName);

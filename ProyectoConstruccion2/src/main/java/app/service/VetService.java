@@ -1,18 +1,25 @@
 package app.service;
 
 import java.util.List; 
+
 import java.util.Arrays;
 import app.dao.LoginDao;
 import app.dao.LoginDaoImp;
 import app.dao.PersonDao;
 import app.dao.PersonDaoImp;
 import app.dto.BillDto;
+import app.dao.BillDaoImp;
+import app.dao.BillDao;
 import app.dto.ClinicHistoryDto;
+import app.dto.OrderDto;
+import app.dao.ClinicHistoryDao;
+import app.dao.ClinicHistoryDaoImp;
 import app.dto.PersonDto;
+import app.dto.PetDto;
 import app.dto.SessionDto;
 
 
-public class VetService implements AdministratorService, VeterinarianService, SellerService{
+public class VetService implements AdministratorService, VeterinarianService, SellerService, LoginService, OrderService{
 	List<String> roles = Arrays.asList("Administrador", "Veterinario", "Vendedor", "Dueño", "Mascota");
 	private static long sessionId = 0L;
 
@@ -32,10 +39,12 @@ public class VetService implements AdministratorService, VeterinarianService, Se
 		System.out.println("Se ha creado el usuario correctamente");
 	}
 	
+	@Override
 	public void setSesionID(long sesionId) {
 		sessionId = sesionId;
 	}
 
+	@Override
 	public void login(PersonDto personDto) throws Exception {
 		PersonDao personDao = new PersonDaoImp();
 		PersonDto personDtoValidate = personDao.findUserByUserName(personDto);
@@ -52,12 +61,14 @@ public class VetService implements AdministratorService, VeterinarianService, Se
 		System.out.println("Se inicia la sesion " + sessionId);
 	}
 
+	@Override
 	public void logout() throws Exception {
 		LoginDao loginDao = new LoginDaoImp();
 		loginDao.logout(sessionId);
 		setSesionID(0);
 	}
 
+	@Override
 	public void createOwner(PersonDto personDto) throws Exception {
 		PersonDao personDao = new PersonDaoImp();
 		if (personDao.findUserExist(personDto)) {
@@ -70,10 +81,22 @@ public class VetService implements AdministratorService, VeterinarianService, Se
 		System.out.println("Se ha creado el usuario correctamente");
 	}
 	
+	public void createPet(PetDto petdto) {
+		
+	}
+	
+	@Override
 	public void createBill(BillDto billDto)throws Exception{
 	}
 	
-	public void createHistoryClinic(ClinicHistoryDto clinicHistoryDto) throws Exception {
+	@Override
+	public void createClinicHistory(ClinicHistoryDto clinicHistoryDto) throws Exception {
+		
+	}
+
+	@Override
+	public void createOrder(OrderDto orderDto) throws Exception {
+		// TODO Auto-generated method stub
 		
 	}
 }
