@@ -7,6 +7,10 @@ import app.config.MYSQLConnection;
 import app.dto.PetDto;
 import app.models.Pet;
 
+import app.config.MYSQLConnection;
+import app.dto.PetDto;
+import app.models.Pet;
+
 public class PetDaoImp {
 public Connection connection = MYSQLConnection.getConnection();
 	

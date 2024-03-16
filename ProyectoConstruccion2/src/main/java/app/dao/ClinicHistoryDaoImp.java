@@ -13,7 +13,7 @@ public class ClinicHistoryDaoImp {
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		int i = 1;
 		preparedStatement.setString(i++, clinicHistoryDto.getDate());
-		preparedStatement.setString(i++, clinicHistoryDto.getVeterinarian());
+		preparedStatement.setLong(i++, clinicHistoryDto.getVeterinarian().getId());
 		preparedStatement.setString(i++, clinicHistoryDto.getReasonForConsultation());
 		preparedStatement.setString(i++, clinicHistoryDto.getSymptomatology());
 		preparedStatement.setString(i++, clinicHistoryDto.getProcedureDetails());

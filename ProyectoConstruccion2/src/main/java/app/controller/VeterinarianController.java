@@ -2,6 +2,7 @@ package app.controller;
 
 import java.util.Scanner;
 
+
 import app.Validators.ClinicHistoryInputsValidators;
 import app.Validators.PersonInputsValidator;
 import app.service.VetService;
@@ -10,6 +11,7 @@ import app.Validators.PetInputsValidators;
 import app.dto.OrderDto;
 import app.dto.ClinicHistoryDto;
 import app.dto.PersonDto;
+import app.dto.PetDto;
 
 public class VeterinarianController {
 	
@@ -38,7 +40,6 @@ public class VeterinarianController {
 		
 		String password ="N/A";
 		
-		
 		PersonDto personDto = new PersonDto(id, fullName, age, rol, userName, password);
 		VeterinarianService.createOwner(personDto);
 	}
@@ -48,8 +49,10 @@ public class VeterinarianController {
 		String namePet = reader.nextLine();
 		petInputsValidator.namePetValidator(namePet);
 		
-		System.out.println("Ingrese los datos del dueño");
-//DATOS DEL DUEÑO 
+		System.out.println("Ingrese la cedula del dueño");
+		long idOwner = personInputsValidator.idValidator(reader.nextLine());
+		PersonDto personDto= new PersonDto();
+		personDto.setId(idOwner);
 		
 		System.out.println("Ingrese la edad de la mascota");
 		int agePet = petInputsValidator.agePetValidator(reader.nextLine());
@@ -72,14 +75,25 @@ public class VeterinarianController {
 		System.out.println("Ingrese la edad");
 		double weight = petInputsValidator.weightValidators(reader.nextLine());	
 		
-		PetDto petDto = new PetDto(namePet, Owner, agePet, idPet, species, race, caracteris, weight);
+		PetDto petDto = new PetDto();
+		petDto.setIdPet(idPet);
+		petDto.setNamePet(namePet);
+		petDto.setAgePet(agePet);
+		petDto.setCaracteris(caracteris);
+		petDto.setOwner(personDto);
+		petDto.setSpecies(species);
+		petDto.setRace(race);
+		petDto.setCaracteris(caracteris);
+		petDto.setWeight(weight);
 		VeterinarianService.createPet(petDto);
 	}
 	
 	public void createClinicHistory() throws Exception{
-		//Creación de la fehca
 		
-		//Creación de los datos del veterinario
+		System.out.println("Ingrese la cedula del veterinario");
+		long idVeterinarian = personInputsValidator.idValidator(reader.nextLine());
+		PersonDto personDto= new PersonDto();
+		personDto.setId(idVeterinarian);
 		
 		System.out.println("Razones de la consulta");
 		String reasonForConsultation = reader.nextLine();

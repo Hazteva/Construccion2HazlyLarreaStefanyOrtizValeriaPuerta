@@ -1,8 +1,6 @@
 package app;
 
 import java.util.Scanner;
-import java.sql.Connection;
-import app.config.MYSQLConnection;
 import app.controller.LoginController;
 
 public class App {
@@ -12,25 +10,16 @@ public class App {
 	
 	public static void main(String[] args) {
 		boolean run = true;
-		//while (run) {
+		while (run) {
 			try {
-				//run = runApplication();
-				Connection con = MYSQLConnection.getConnection();
+				run = runApplication();
+				//Connection con = MYSQLConnection.getConnection();
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
-		//}
+		}
 		System.out.print("deteniendo la aplicacion");
-		/*while(true){
-		 try {
-			 //MYSQLConnection.getConnection();
-			 sellerController.createUser();
-		     break;
-		 }
-		 catch (Exception e) {
-			System.out.println(e.getMessage());
-		 }
-		}*/
+		
 	}
 	
 	public static boolean runApplication() throws Exception {

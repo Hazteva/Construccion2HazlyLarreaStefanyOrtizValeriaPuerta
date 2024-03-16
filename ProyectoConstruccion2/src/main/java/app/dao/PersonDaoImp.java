@@ -12,15 +12,15 @@ public class PersonDaoImp implements PersonDao{
 	
 	@Override
 	public void createPerson(PersonDto personDto) throws Exception {
-		String query = "INSERT INTO PERSONA(ID,FULLNAME,AGE,ROL,USERNAME,PASSWORD) VALUES (?,?,?,?,?)";
+		String query = "INSERT INTO PERSONA(CEDULA,NOMBRE,EDAD,USERNAME,PASSWORD, ROLE) VALUES (?,?,?,?,?,?)";
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		int i = 1;
 		preparedStatement.setLong(i++, personDto.getId());
 		preparedStatement.setString(i++, personDto.getFullName());
 		preparedStatement.setInt(i++, personDto.getAge());
-		preparedStatement.setString(i++, personDto.getRol());
 		preparedStatement.setString(i++, personDto.getUserName());
 		preparedStatement.setString(i++, personDto.getPassword());
+		preparedStatement.setString(i++, personDto.getRol());
 		preparedStatement.execute();
 		preparedStatement.close();
 	}
@@ -39,7 +39,7 @@ public class PersonDaoImp implements PersonDao{
 
 	@Override
 	public PersonDto findUserById(PersonDto personDto) throws Exception {
-		String query = "SELECT ID,FULLNAME,USERNAME,PASSWORD,ROL FROM PERSONA WHERE ID = ?";
+		String query = "SELECT CEDULA,NOMBRE,EDAD,USERNAME,ROL FROM PERSONA WHERE ID = ?";
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		preparedStatement.setLong(1, personDto.getId());
 		ResultSet resulSet = preparedStatement.executeQuery();

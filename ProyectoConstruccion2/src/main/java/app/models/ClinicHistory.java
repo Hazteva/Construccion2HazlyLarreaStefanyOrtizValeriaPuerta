@@ -2,7 +2,7 @@ package app.models;
 
 public class ClinicHistory {
 	private String date;
-	private String veterinarian;
+	private Person veterinarian;
 	private String reasonForConsultation;
 	private String symptomatology;
 	private String procedure;
@@ -20,11 +20,11 @@ public class ClinicHistory {
 		this.date = date;
 	}
 	
-	public String getVeterinarian() {
+	public Person getVeterinarian() {
 		return veterinarian;
 	}
 	
-	public void setVeterinarian(String veterinarian) {
+	public void setVeterinarian(Person veterinarian) {
 		this.veterinarian = veterinarian;
 	}
 	
