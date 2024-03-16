@@ -41,9 +41,6 @@ public class VeterinarianController {
 		
 		PersonDto personDto = new PersonDto(id, fullName, age, rol, userName, password);
 		VeterinarianService.createOwner(personDto);
-		//Duda: no necesito los otros parametros, entonces que hago para crear el dueño
-		//Toca preguntarle al profe como hacemos que esos parametros no sean necesarios ya que por el 
-		//no deja
 	}
 	
 	public void createPet() throws Exception{
