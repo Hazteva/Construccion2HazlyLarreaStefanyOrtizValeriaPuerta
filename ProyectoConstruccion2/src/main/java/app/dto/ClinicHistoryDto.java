@@ -1,7 +1,7 @@
 package app.dto;
 
 public class ClinicHistoryDto {
-	private String date;
+	private long date;
 	private PersonDto veterinarian;
 	private String reasonForConsultation;
 	private String symptomatology;
@@ -12,27 +12,12 @@ public class ClinicHistoryDto {
 	private String allergies;
 	private String procedureDetails;
 	
-	public ClinicHistoryDto(String date, PersonDto veterinarian, String reasonForConsultation, String symptomatology,
-			String procedure, String medicines, OrderDto idOrder, String vaccinationHistory, String allergies,
-			String procedureDetails) {
-		super();
-		this.date = date;
-		this.veterinarian = veterinarian;
-		this.reasonForConsultation = reasonForConsultation;
-		this.symptomatology = symptomatology;
-		this.procedure = procedure;
-		this.medicines = medicines;
-		this.idOrder = idOrder;
-		this.vaccinationHistory = vaccinationHistory;
-		this.allergies = allergies;
-		this.procedureDetails = procedureDetails;
-	}
 
-	public String getDate() {
+	public long getDate() {
 		return date;
 	}
 	
-	public void setDate(String date) {
+	public void setDate(long date) {
 		this.date = date;
 	}
 	

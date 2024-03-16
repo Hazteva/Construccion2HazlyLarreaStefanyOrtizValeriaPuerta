@@ -9,7 +9,7 @@ import app.dto.PersonDto;
 
 public class AdministratorController {
 	private static PersonInputsValidator personInputValidator = new PersonInputsValidator();
-	private static AdministratorService AdministratorService = new VetService();
+	private static AdministratorService administratorService = new VetService();
 	private static Scanner reader = new Scanner(System.in); 
 	private static final String MENU = "ingrese\n1.Para crear usuario\n2.Para cerrar Sesion";
 	
@@ -38,7 +38,7 @@ public class AdministratorController {
 		personInputValidator.fullNameValidator(password);
 		
 		PersonDto personDto = new PersonDto(id, fullName, age, rol, userName, password);
-		AdministratorService.createUser(personDto);
+		administratorService.createUser(personDto);
 	}
 	
 	public void session() {

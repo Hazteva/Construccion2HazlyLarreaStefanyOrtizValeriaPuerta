@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 
 import app.Validators.ClinicHistoryInputsValidators;
+import app.Validators.OrderInputsValidators;
 import app.Validators.PersonInputsValidator;
 import app.service.VetService;
 import app.service.VeterinarianService;
@@ -17,6 +18,7 @@ public class VeterinarianController {
 	
 	private static VeterinarianService VeterinarianService = new VetService();
 	private static PersonInputsValidator personInputsValidator = new PersonInputsValidator();
+	private static OrderInputsValidators orderInputsValidators = new OrderInputsValidators();
 	private static PetInputsValidators petInputsValidator = new PetInputsValidators();
 	private static ClinicHistoryInputsValidators clinicHistoryInputsValidators = new ClinicHistoryInputsValidators();
 	private static final String MENU = "ingrese\n1.Para crear dueño\n2.Para crear mascota \n3.Para crear historia clinica \n4.Para crear orden";
@@ -103,7 +105,7 @@ public class VeterinarianController {
 		String symptomatology = reader.nextLine();
 		clinicHistoryInputsValidators.symptomatologyValidators(symptomatology);
 		
-		System.out.println("Procedimiento");
+		System.out.println("Medicines");
 		String medicines = reader.nextLine();
 		clinicHistoryInputsValidators.medicinesValidators(medicines);
 		
@@ -111,26 +113,44 @@ public class VeterinarianController {
 		String procedure = reader.nextLine();
 		clinicHistoryInputsValidators.procedureValidators(procedure);
 		
-		//Llamar el id de la clase orden
+		System.out.println("Ingrese la cedula del veterinario");
+		long idOrder = orderInputsValidators.idOrderValidator(reader.nextLine());
+		OrderDto orderDto= new OrderDto();
+		orderDto.setIdOrder(idOrder);
 		
-		System.out.println("Procedimiento");
+		System.out.println("Historial de vacunación");
 		String vaccinationHistory = reader.nextLine();
 		clinicHistoryInputsValidators.vaccinationHistoryValidators(vaccinationHistory);
 		
-		System.out.println("Procedimiento");
+		System.out.println("Alergias");
 		String allergies = reader.nextLine();
 		clinicHistoryInputsValidators.allergiesValidators(allergies);
 		
-		System.out.println("Procedimiento");
+		System.out.println("Detalles del procedimiento");
 		String procedureDetails = reader.nextLine();
 		clinicHistoryInputsValidators.procedureDetailsValidators(procedureDetails);
 		
-		ClinicHistoryDto clinicHistoryDto = new ClinicHistoryDto(reasonForConsultation, symptomatology,idOrder, vaccinationHistory, allergies, procedureDetails);
+		ClinicHistoryDto clinicHistoryDto = new ClinicHistoryDto();
+		clinicHistoryDto.setDate(System.currentTimeMillis());
+		clinicHistoryDto.setReasonForConsultation(reasonForConsultation);
+		clinicHistoryDto.setSymptomatology(symptomatology);
+		clinicHistoryDto.setMedicines(medicines);
+		clinicHistoryDto.setProcedure(procedureDetails);
+		clinicHistoryDto.setVaccinationHistory(vaccinationHistory);
+		clinicHistoryDto.setAllergies(allergies);
+		clinicHistoryDto.setProcedureDetails(procedureDetails);
 		VeterinarianService.createClinicHistory(clinicHistoryDto);
 	}
 	
 	public void createOrder() throws Exception{
+		System.out.println("Id de la orden");
+		String idOrder = reader.nextLine();
+		orderInputsValidators.idOrderValidator(idOrder);
 		
+		System.out.println("Ingrese el id de la mascota");
+		long idPet = petInputsValidator.idPetValidator(reader.nextLine());
+		PersonDto personDto= new PersonDto();
+		personDto.setId(idVeterinarian)
 	}
 	
 	public void session() {
