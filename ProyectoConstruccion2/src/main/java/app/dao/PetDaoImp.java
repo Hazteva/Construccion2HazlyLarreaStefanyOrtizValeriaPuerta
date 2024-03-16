@@ -15,7 +15,7 @@ public class PetDaoImp {
 public Connection connection = MYSQLConnection.getConnection();
 	
 	public void createPet(PetDto petDto) throws Exception {
-		String query = "INSERT INTO MASCOTA(ID,NAME,SPACIES,AGE,RACE, CARACTERIS, WEIGHT)  VALUES (?,?,?,?,?)";
+		String query = "INSERT INTO MASCOTA(ID,PROPIETARIO,ESPECIE,EDAD,PESO,RAZA,ESPECIE,CARACTERISTICAS)  VALUES (?,?,?,?,?,?,?,?)";
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		int i = 1;
 		preparedStatement.setLong(i++, petDto.getIdPet());
@@ -24,7 +24,7 @@ public Connection connection = MYSQLConnection.getConnection();
 		preparedStatement.setInt(i++, petDto.getAgePet());
 		preparedStatement.setString(i++, petDto.getRace());
 		preparedStatement.setString(i++, petDto.getCaracteris());
-                preparedStatement.setDouble(i++, petDto.getWeight());
+        preparedStatement.setDouble(i++, petDto.getWeight());
 		preparedStatement.execute();
 		preparedStatement.close();
 	}
@@ -41,7 +41,7 @@ public Connection connection = MYSQLConnection.getConnection();
 	}
 
 	public PetDto findPetById(PetDto petDto) throws Exception {
-		String query = "SELECT ID,NAME,SPECIES,AGE,RACE, CARACTERIS, WEIGHT FROM MASCOTA WHERE ID = ?";
+		String query = "SELECT ID,PROPIETARIO,ESPECIE,EDAD,PESO,RAZA,ESPECIE,CARACTERISTICAS FROM MASCOTA WHERE ID = ?";
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		preparedStatement.setLong(1, petDto.getIdPet());
 		ResultSet resulSet = preparedStatement.executeQuery();

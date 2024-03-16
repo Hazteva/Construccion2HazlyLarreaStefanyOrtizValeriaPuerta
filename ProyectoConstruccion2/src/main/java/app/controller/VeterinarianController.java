@@ -1,8 +1,6 @@
 package app.controller;
 
 import java.util.Scanner;
-
-
 import app.Validators.ClinicHistoryInputsValidators;
 import app.Validators.OrderInputsValidators;
 import app.Validators.PersonInputsValidator;
@@ -42,7 +40,13 @@ public class VeterinarianController {
 		
 		String password ="N/A";
 		
-		PersonDto personDto = new PersonDto(id, fullName, age, rol, userName, password);
+		PersonDto personDto = new PersonDto();
+		personDto.setId(id);
+		personDto.setFullName(fullName);
+		personDto.setAge(age);
+		personDto.setRol(rol);
+		personDto.setUserName(userName);
+		personDto.setPassword(password);	
 		VeterinarianService.createOwner(personDto);
 	}
 	
@@ -118,7 +122,7 @@ public class VeterinarianController {
 		String procedure = reader.nextLine();
 		clinicHistoryInputsValidators.procedureValidators(procedure);
 		
-		System.out.println("Ingrese la cedula del veterinario");
+		System.out.println("Ingrese el id de la orden");
 		long idOrder = orderInputsValidators.idOrderValidator(reader.nextLine());
 		OrderDto orderDto= new OrderDto();
 		orderDto.setIdOrder(idOrder);
@@ -148,14 +152,36 @@ public class VeterinarianController {
 	}
 	
 	public void createOrder() throws Exception{
+		PersonDto personDto= new PersonDto();
+		
 		System.out.println("Id de la orden");
 		String idOrder = reader.nextLine();
 		orderInputsValidators.idOrderValidator(idOrder);
 		
 		System.out.println("Ingrese el id de la mascota");
 		long idPet = petInputsValidator.idPetValidator(reader.nextLine());
-		PersonDto personDto= new PersonDto();
-		personDto.setId(idVeterinarian)
+		PetDto petDto= new PetDto();
+		petDto.setIdPet(idPet);
+		
+		System.out.println("Ingrese la cedula del dueño");
+		long idOwner = personInputsValidator.idValidator(reader.nextLine());
+		personDto.setId(idOwner);
+		
+		System.out.println("Ingrese la cedula del veterinario");
+		long idVeterinarian = personInputsValidator.idValidator(reader.nextLine());
+		personDto.setId(idVeterinarian);
+		
+		System.out.println("Medicamentos");
+		String medicineName = reader.nextLine();
+		orderInputsValidators.medicineNameValidator(medicineName);
+		
+		OrderDto orderDto = new OrderDto();
+		orderDto.setIdOrder(idVeterinarian);
+		orderDto.setIdOwner(personDto);
+		orderDto.setIdPet(petDto);
+		orderDto.setIdVeterinarian(personDto);
+		orderDto.setMedicineName(medicineName);
+		VeterinarianService.createOrder(orderDto);
 	}
 	
 	public void session() {

@@ -1,5 +1,9 @@
 package app.service;
 
+<<<<<<< HEAD
+=======
+import java.util.List; 
+>>>>>>> 3d24923c7bf8516487fafc710d870822407d9ca7
 import java.util.Arrays;
 import java.util.List;
 
@@ -7,6 +11,8 @@ import app.dao.LoginDao;
 import app.dao.LoginDaoImp;
 import app.dao.PersonDao;
 import app.dao.PersonDaoImp;
+import app.dao.PetDao;
+import app.dao.PetDaoImp;
 import app.dto.BillDto;
 import app.dto.ClinicHistoryDto;
 import app.dto.OrderDto;
@@ -77,12 +83,21 @@ public class VetService implements AdministratorService, VeterinarianService, Se
 		System.out.println("Se ha creado el usuario correctamente");
 	}
 	
-	public void createPet(PetDto petdto) {
-		
+	@Override
+	public void createPet(PetDto petdto) throws Exception{
 	}
 	
 	@Override
 	public void createBill(BillDto billDto)throws Exception{
+		BillDao billDao = new BillDaoImp();
+		if(billDao.findBillExist(billDto)) {
+			throw new Exception("Ya esxiste la factura");
+		}
+		if(billDao.findBillById(billDto)) {
+			throw new Exception("Ya existe una factura con esa id");
+		}
+		billDao.createBill(billDto);
+		System.out.println("Se ha creado la factura correctamente");
 	}
 	
 	@Override
