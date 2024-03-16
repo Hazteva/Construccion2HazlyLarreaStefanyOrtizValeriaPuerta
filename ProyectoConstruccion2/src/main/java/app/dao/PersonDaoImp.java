@@ -27,7 +27,7 @@ public class PersonDaoImp implements PersonDao{
 
 	@Override
 	public boolean findUserExist(PersonDto personDto) throws Exception {
-		String query = "SELECT 1 FROM PERSONA WHERE ID = ?";
+		String query = "SELECT 1 FROM PERSONA WHERE CEDULA = ?";
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		preparedStatement.setLong(1, personDto.getId());
 		ResultSet resulSet = preparedStatement.executeQuery();
@@ -39,7 +39,7 @@ public class PersonDaoImp implements PersonDao{
 
 	@Override
 	public PersonDto findUserById(PersonDto personDto) throws Exception {
-		String query = "SELECT CEDULA,NOMBRE,EDAD,USERNAME,ROL FROM PERSONA WHERE ID = ?";
+		String query = "SELECT CEDULA,NOMBRE,EDAD,USERNAME,ROL FROM PERSONA WHERE CEDULA = ?";
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		preparedStatement.setLong(1, personDto.getId());
 		ResultSet resulSet = preparedStatement.executeQuery();
@@ -73,7 +73,7 @@ public class PersonDaoImp implements PersonDao{
 
 	@Override
 	public PersonDto findUserByUserName(PersonDto personDto) throws Exception {
-		String query = "SELECT ID,FULLNAME,USERNAME,PASSWORD,ROL FROM PERSONA WHERE USERNAME = ?";
+		String query = "SELECT CEDULA,NOMBRE,EDAD,USERNAME,PASSWORD,ROLE FROM PERSONA WHERE USERNAME = ?";
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		preparedStatement.setString(1, personDto.getUserName());
 		ResultSet resulSet = preparedStatement.executeQuery();

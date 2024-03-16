@@ -14,7 +14,7 @@ public class BillDaoImp implements BillDao {
 	public Connection connection = MYSQLConnection.getConnection();
 
 	public void createBill(BillDto billDto) throws Exception {
-		String query = "INSERT INTO FACTURA(ID_BILL,ID_PET,OWNER_ID,PRODUCT_NAME,PRICE,QUANTITY, DATE) VALUES (?,?,?,?,?,?,?)";
+		String query = "INSERT INTO FACTURA(ID,MASCOTA,PROPIETARIO,PRODUCTO,VALOR,CANTIDAD,FECHA) VALUES (?,?,?,?,?,?,?)";
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		int i = 1;
 		
@@ -24,13 +24,13 @@ public class BillDaoImp implements BillDao {
 		preparedStatement.setString(i++, billDto.getProductName());
 		preparedStatement.setDouble(i++, billDto.getPrice());
 		preparedStatement.setInt(i++, billDto.getQuantity());
-		//preparedStatement.setDate(i++, new java.sql.Date(billDto.getDate().getTime()));
+		preparedStatement.setDate(i++, billDto.getDate());
 		preparedStatement.execute();
 		preparedStatement.close();
 	}
 		
 	public boolean findBillExist(BillDto billDto) throws Exception{
-		String query = "SELECT 1 FROM FACTURA WHERE ID_BILL = ?";
+		String query = "SELECT 1 FROM FACTURA WHERE ID = ?";
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 
 		preparedStatement.setLong(1, billDto.getIdBill());
@@ -44,7 +44,7 @@ public class BillDaoImp implements BillDao {
 	
 	
 	public BillDto findBillById(BillDto billDto) throws Exception {
-		String query = "SELECT ID_BILL, ID_PET, OWNER_ID, PRODUCT_NAME, PRICE, QUANTITY, DATE FROM FACTURA WHERE ID_BILL = ?)";
+		String query = "SELECT ID,MASCOTA,PROPIETARIO,PRODUCTO,VALOR,CANTIDAD,FECHA FROM FACTURA WHERE ID = ?)";
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		
 		preparedStatement.setLong(1, billDto.getIdBill());

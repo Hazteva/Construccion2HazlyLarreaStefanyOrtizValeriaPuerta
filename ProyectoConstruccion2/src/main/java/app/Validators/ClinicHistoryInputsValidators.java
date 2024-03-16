@@ -6,6 +6,10 @@ public class ClinicHistoryInputsValidators extends InputsValidators {
 		super.stringValidator(date, " fecha");
 	}
 	
+	public void petValidators(String pet)throws Exception {
+		super.stringValidator(pet, pet);
+	}
+	
 	public void veterinarianValidators(String veterinarian)throws Exception {
 		super.stringValidator(veterinarian, " nombre del veterinario");
 	}

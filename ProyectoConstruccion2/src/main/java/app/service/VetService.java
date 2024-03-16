@@ -1,19 +1,15 @@
 package app.service;
 
-import java.util.List; 
-
 import java.util.Arrays;
+import java.util.List;
+
 import app.dao.LoginDao;
 import app.dao.LoginDaoImp;
 import app.dao.PersonDao;
 import app.dao.PersonDaoImp;
 import app.dto.BillDto;
-import app.dao.BillDaoImp;
-import app.dao.BillDao;
 import app.dto.ClinicHistoryDto;
 import app.dto.OrderDto;
-import app.dao.ClinicHistoryDao;
-import app.dao.ClinicHistoryDaoImp;
 import app.dto.PersonDto;
 import app.dto.PetDto;
 import app.dto.SessionDto;

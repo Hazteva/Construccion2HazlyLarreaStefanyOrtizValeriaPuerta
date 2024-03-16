@@ -1,7 +1,12 @@
 package app.dto;
 
+import java.sql.Date;
+
+import app.models.Pet;
+
 public class ClinicHistoryDto {
-	private long date;
+	private Date date;
+	private Pet pet;
 	private PersonDto veterinarian;
 	private String reasonForConsultation;
 	private String symptomatology;
@@ -13,12 +18,20 @@ public class ClinicHistoryDto {
 	private String procedureDetails;
 	
 
-	public long getDate() {
+	public Date getDate() {
 		return date;
 	}
 	
-	public void setDate(long date) {
+	public void setDate(Date date) {
 		this.date = date;
+	}
+	
+	public Pet getPet() {
+		return pet;
+	}
+	
+	public void setPet(Pet pet) {
+		this.pet = pet;
 	}
 	
 	public PersonDto getVeterinarian() {

@@ -1,6 +1,6 @@
 package app.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class BillDto {
 	private long idBill;

@@ -9,10 +9,10 @@ public class ClinicHistoryDaoImp {
 	public Connection connection = MYSQLConnection.getConnection();
 	
 	public void createClinicHistory(ClinicHistoryDto clinicHistoryDto) throws Exception {
-		String query = "INSERT INTO PERSONA(DATE,VETERINARIAN,REASONFORCONSULTATION,SYMTOMATOLOGY,PROCEDURA,MEDICINES, IDORDER, VACCINATIONHISTORY, ALLERGIES, PROCEDURADETAILS) VALUES (?,?,?,?,?,?,?,?,?,?)";
+		String query = "INSERT INTO PERSONA(FECHA,MASCOTA,MEDICO,MOTIVO,SINTOMATOLOGIA,PROCEDIMIENTO,MEDICAMENTO,ORDER,VACUNACION,ALERGIA,DETALLES ) VALUES (?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		int i = 1;
-		preparedStatement.setString(i++, clinicHistoryDto.getDate());
+		preparedStatement.setDate(i++, clinicHistoryDto.getDate());
 		preparedStatement.setLong(i++, clinicHistoryDto.getVeterinarian().getId());
 		preparedStatement.setString(i++, clinicHistoryDto.getReasonForConsultation());
 		preparedStatement.setString(i++, clinicHistoryDto.getSymptomatology());
@@ -25,4 +25,6 @@ public class ClinicHistoryDaoImp {
 		preparedStatement.execute();
 		preparedStatement.close();
 	}
+	
+	
 }

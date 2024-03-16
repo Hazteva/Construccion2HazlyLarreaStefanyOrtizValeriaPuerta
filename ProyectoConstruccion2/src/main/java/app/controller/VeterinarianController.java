@@ -97,6 +97,11 @@ public class VeterinarianController {
 		PersonDto personDto= new PersonDto();
 		personDto.setId(idVeterinarian);
 		
+		System.out.println("Ingrese la mascota");
+		long idPet = petInputsValidator.idPetValidator(reader.nextLine());
+		PetDto petDto= new PetDto();
+		petDto.setIdPet(idVeterinarian);
+		
 		System.out.println("Razones de la consulta");
 		String reasonForConsultation = reader.nextLine();
 		clinicHistoryInputsValidators.reasonForConsultationValidators(reasonForConsultation);
