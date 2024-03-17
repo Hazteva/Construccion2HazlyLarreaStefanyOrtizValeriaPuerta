@@ -7,23 +7,25 @@ import java.sql.ResultSet;
 import app.config.MYSQLConnection;
 import app.dto.BillDto;
 import app.dto.ClinicHistoryDto;
+import app.dto.OrderDto;
 import app.dto.PersonDto;
 import app.dto.PetDto;
+import app.models.Pet;
 
-public class ClinicHistoryDaoImp {
+public class ClinicHistoryDaoImp implements ClinicHistoryDao{
 	public Connection connection = MYSQLConnection.getConnection();
 	
 	public void createClinicHistory(ClinicHistoryDto clinicHistoryDto) throws Exception {
 		String query = "INSERT INTO PERSONA(FECHA,MASCOTA,MEDICO,MOTIVO,SINTOMATOLOGIA,PROCEDIMIENTO,MEDICAMENTO,ORDER,VACUNACION,ALERGIA,DETALLES ) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		int i = 1;
-		preparedStatement.setDate(i++, clinicHistoryDto.getDate());
+		preparedStatement.setLong(i++, clinicHistoryDto.getDate());
 		preparedStatement.setLong(i++, clinicHistoryDto.getVeterinarian().getId());
 		preparedStatement.setString(i++, clinicHistoryDto.getReasonForConsultation());
 		preparedStatement.setString(i++, clinicHistoryDto.getSymptomatology());
 		preparedStatement.setString(i++, clinicHistoryDto.getProcedureDetails());
 		preparedStatement.setString(i++, clinicHistoryDto.getMedicines());
-		//preparedStatement.OrderDto(i++, clinicHistoryDto.getIdOrder());
+		preparedStatement.setLong(i++, clinicHistoryDto.getIdOrder().getIdOrder());
 		preparedStatement.setString(i++, clinicHistoryDto.getVaccinationHistory());
 		preparedStatement.setString(i++, clinicHistoryDto.getAllergies());
 		preparedStatement.setString(i++, clinicHistoryDto.getProcedureDetails());
@@ -31,33 +33,35 @@ public class ClinicHistoryDaoImp {
 		preparedStatement.close();
 	}
 	
-	public BillDto findBillById(ClinicHistoryDto clinicHistoryDto) throws Exception {
-		String query = "SELECT FECHA,MASCOTA,MEDICO,MOTIVO,SINTOMATOLOGIA,PROCEDIMIENTO,MEDICAMENTO,ORDER,VACUNACION,ALERGIA,DETALLES FROM FACTURA WHERE ID = ?)";
+	public ClinicHistoryDto findClinicHistory(ClinicHistoryDto clinicHistoryDto) throws Exception {
+		String query = "SELECT FECHA,MASCOTA,MEDICO,MOTIVO,SINTOMATOLOGIA,PROCEDIMIENTO,MEDICAMENTO,ORDER,VACUNACION,ALERGIA,DETALLES FROM FACTURA WHERE MASCOTA = ? AND MEDICO = ? AND MOTIVO = ?)";
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		
-		preparedStatement.setLong(1, ClinicHistoryDto.getIdClinicHostory());
+		preparedStatement.setString(1, clinicHistoryDto.getPet().getNamePet());
+		preparedStatement.setString(2, clinicHistoryDto.getVeterinarian().getFullName());
+		preparedStatement.setString(3, clinicHistoryDto.getReasonForConsultation());
+		
 		ResultSet resultSet = preparedStatement.executeQuery();
 		
 		if(resultSet.next()) {
-			BillDto bill = new BillDto();
-			bill.setIdBill(resultSet.getLong("ID_BILL"));
 			
-			PetDto petDto = new PetDto();
-			petDto.setIdPet(resultSet.getLong("ID_PET"));
-			bill.setIdPet(petDto);
-			
-			PersonDto personDto = new PersonDto();
-			personDto.setId(resultSet.getLong("OWNER_ID"));
-			bill.setOwnerId(personDto);
-			
-			bill.setProductName(resultSet.getString("PRODUCT_NAME"));
-			bill.setPrice(resultSet.getDouble("PRICE"));
-			bill.setQuantity(resultSet.getInt("QUANTITY"));
-			bill.setDate(resultSet.getDate("DATE"));
+			clinicHistoryDto.setDate(resultSet.getLong("FECHA"));
+			Pet pet = new Pet();
+			pet.setIdPet(resultSet.getLong("MASCOTA"));			
+            clinicHistoryDto.setVeterinarian(new PersonDto());
+            clinicHistoryDto.setReasonForConsultation(resultSet.getString("MOTIVO"));
+            clinicHistoryDto.setSymptomatology("SINTOMATOLOGIA");
+            clinicHistoryDto.setSymptomatology("PROCEDIMIENTO");
+            clinicHistoryDto.setSymptomatology("MEDICAMENTO");
+            clinicHistoryDto.setIdOrder(new OrderDto());
+            clinicHistoryDto.setVaccinationHistory(resultSet.getString("VACUNACION"));
+            clinicHistoryDto.setAllergies(resultSet.getString("ALERGIA"));
+            clinicHistoryDto.setProcedureDetails(resultSet.getString("DETALLES"));
+
 			
 			resultSet.close();
 			preparedStatement.close();
-			return new BillDto();
+			return new ClinicHistoryDto();
 		}
 		resultSet.close();
 		preparedStatement.close();

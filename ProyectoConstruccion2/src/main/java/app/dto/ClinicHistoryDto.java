@@ -5,7 +5,7 @@ import java.sql.Date;
 import app.models.Pet;
 
 public class ClinicHistoryDto {
-	private Date date;
+	private Long date;
 	private Pet pet;
 	private PersonDto veterinarian;
 	private String reasonForConsultation;
@@ -18,11 +18,11 @@ public class ClinicHistoryDto {
 	private String procedureDetails;
 	
 
-	public Date getDate() {
+	public Long getDate() {
 		return date;
 	}
 	
-	public void setDate(Date date) {
+	public void setDate(Long date) {
 		this.date = date;
 	}
 	

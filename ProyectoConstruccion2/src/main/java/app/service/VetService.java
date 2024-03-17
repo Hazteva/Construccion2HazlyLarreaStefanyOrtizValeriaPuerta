@@ -1,12 +1,12 @@
 package app.service;
 
-<<<<<<< HEAD
-=======
 import java.util.List; 
->>>>>>> 3d24923c7bf8516487fafc710d870822407d9ca7
+
+
 import java.util.Arrays;
 import java.util.List;
-
+import app.dao.BillDao;
+import app.dao.BillDaoImp;
 import app.dao.LoginDao;
 import app.dao.LoginDaoImp;
 import app.dao.PersonDao;
@@ -93,7 +93,7 @@ public class VetService implements AdministratorService, VeterinarianService, Se
 		if(billDao.findBillExist(billDto)) {
 			throw new Exception("Ya esxiste la factura");
 		}
-		if(billDao.findBillById(billDto)) {
+		if(billDao.findBillExist(billDto)) {
 			throw new Exception("Ya existe una factura con esa id");
 		}
 		billDao.createBill(billDto);

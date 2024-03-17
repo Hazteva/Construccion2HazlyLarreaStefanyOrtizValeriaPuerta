@@ -2,15 +2,15 @@ package app.dao;
 
 import java.sql.Connection;
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import app.config.MYSQLConnection;
 import app.dto.BillDto;
 import app.dto.PersonDto;
 import app.dto.PetDto;
 
-public class BillDaoImp implements BillDao {
+public class BillDaoImp implements BillDao{
 	public Connection connection = MYSQLConnection.getConnection();
 
 	public void createBill(BillDto billDto) throws Exception {
@@ -50,7 +50,7 @@ public class BillDaoImp implements BillDao {
 		preparedStatement.setLong(1, billDto.getIdBill());
 		ResultSet resultSet = preparedStatement.executeQuery();
 		
-		if(resultSet.next()) {
+		if(resultSet.next()) { 
 			BillDto bill = new BillDto();
 			bill.setIdBill(resultSet.getLong("ID_BILL"));
 			
@@ -75,5 +75,11 @@ public class BillDaoImp implements BillDao {
 		preparedStatement.close();
 		
 		return null;
+	}
+
+	@Override
+	public boolean findBill(BillDto billDto) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
