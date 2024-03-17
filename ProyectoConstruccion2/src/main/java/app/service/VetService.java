@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Arrays;
 import app.dao.LoginDao;
 import app.dao.LoginDaoImp;
+import app.dao.OrderDao;
 import app.dao.PersonDao;
 import app.dao.PersonDaoImp;
 import app.dao.PetDao;
@@ -12,6 +13,7 @@ import app.dao.BillDao;
 import app.dao.BillDaoImp;
 import app.dao.ClinicHistoryDao;
 import app.dao.ClinicHistoryDaoImp;
+import app.dao.OrderDaoImp;
 import app.dto.BillDto;
 import app.dto.ClinicHistoryDto;
 import app.dto.OrderDto;
@@ -120,7 +122,9 @@ public class VetService implements AdministratorService, VeterinarianService, Se
 
 	@Override
 	public void createOrder(OrderDto orderDto) throws Exception {
-		OrderDao orderDao = new OrderDaoImp();
+		OrderDao orderDao = (OrderDao) new OrderDaoImp();
+		orderDao.createOrder(orderDto);
+		System.out.print("Se ha creado la orden correctamente");
 	}
 }
 

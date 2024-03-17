@@ -3,14 +3,13 @@ package app.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import app.config.MYSQLConnection;
 import app.dto.BillDto;
 import app.dto.ClinicHistoryDto;
 import app.dto.OrderDto;
 import app.dto.PersonDto;
-import app.dto.PetDto;
 import app.models.Pet;
+import app.dao.ClinicHistoryDaoImp;
 
 public class ClinicHistoryDaoImp implements ClinicHistoryDao{
 	public Connection connection = MYSQLConnection.getConnection();
@@ -57,7 +56,6 @@ public class ClinicHistoryDaoImp implements ClinicHistoryDao{
             clinicHistoryDto.setVaccinationHistory(resultSet.getString("VACUNACION"));
             clinicHistoryDto.setAllergies(resultSet.getString("ALERGIA"));
             clinicHistoryDto.setProcedureDetails(resultSet.getString("DETALLES"));
-
 			
 			resultSet.close();
 			preparedStatement.close();
@@ -65,7 +63,12 @@ public class ClinicHistoryDaoImp implements ClinicHistoryDao{
 		}
 		resultSet.close();
 		preparedStatement.close();
-		
+		return null;
+	}
+
+	@Override
+	public BillDto findBillById(ClinicHistoryDto clinicHistoryDto) throws Exception {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }
