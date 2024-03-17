@@ -65,10 +65,4 @@ public class ClinicHistoryDaoImp implements ClinicHistoryDao{
 		preparedStatement.close();
 		return null;
 	}
-
-	@Override
-	public BillDto findBillById(ClinicHistoryDto clinicHistoryDto) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
