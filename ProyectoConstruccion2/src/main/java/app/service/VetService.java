@@ -1,18 +1,15 @@
 package app.service;
 
-<<<<<<< HEAD
-=======
 import java.util.List; 
->>>>>>> 3d24923c7bf8516487fafc710d870822407d9ca7
 import java.util.Arrays;
-import java.util.List;
-
 import app.dao.LoginDao;
 import app.dao.LoginDaoImp;
 import app.dao.PersonDao;
 import app.dao.PersonDaoImp;
 import app.dao.PetDao;
 import app.dao.PetDaoImp;
+import app.dao.ClinicHistoryDao;
+import app.dao.ClinicHistoryDaoImp;
 import app.dto.BillDto;
 import app.dto.ClinicHistoryDto;
 import app.dto.OrderDto;
@@ -85,6 +82,7 @@ public class VetService implements AdministratorService, VeterinarianService, Se
 	
 	@Override
 	public void createPet(PetDto petdto) throws Exception{
+		PetDao petDao = new PetDaoImp();
 	}
 	
 	@Override
@@ -102,12 +100,17 @@ public class VetService implements AdministratorService, VeterinarianService, Se
 	
 	@Override
 	public void createClinicHistory(ClinicHistoryDto clinicHistoryDto) throws Exception {
-		
+		ClinicHistoryDao clinicHistoryDao = (ClinicHistoryDao) new ClinicHistoryDaoImp();
+		if(clinicHistoryDao.findBillById(clinicHistoryDto)) {
+			throw new Exception("Ya está la historia clinica");
+		}
+		clinicHistoryDao.createClinicHistory(clinicHistoryDto);
+		System.out.print("Se ha creado la historia clinica correctamente");
 	}
 
 	@Override
 	public void createOrder(OrderDto orderDto) throws Exception {
-		// TODO Auto-generated method stub
+		OrderDao orderDao = new OrderDaoImp();
 		
 	}
 }
