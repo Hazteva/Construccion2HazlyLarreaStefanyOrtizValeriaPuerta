@@ -8,6 +8,8 @@ import app.dao.PersonDao;
 import app.dao.PersonDaoImp;
 import app.dao.PetDao;
 import app.dao.PetDaoImp;
+import app.dao.BillDao;
+import app.dao.BillDaoImp;
 import app.dao.ClinicHistoryDao;
 import app.dao.ClinicHistoryDaoImp;
 import app.dto.BillDto;
@@ -83,6 +85,14 @@ public class VetService implements AdministratorService, VeterinarianService, Se
 	@Override
 	public void createPet(PetDto petdto) throws Exception{
 		PetDao petDao = new PetDaoImp();
+		if (petDao.findPetExist(petdto)) {
+			throw new Exception("Ya existe una mascota con esa id");
+		}
+		if (petDao.findPetById(petdto)) {
+			throw new Exception("Ya existe la mascota");
+		}
+		petDao.createPet(petdto);
+		System.out.println("Se ha creado la mascota correctamente");	
 	}
 	
 	@Override
@@ -91,7 +101,7 @@ public class VetService implements AdministratorService, VeterinarianService, Se
 		if(billDao.findBillExist(billDto)) {
 			throw new Exception("Ya esxiste la factura");
 		}
-		if(billDao.findBillById(billDto)) {
+		if(billDao.findBill(billDto)) {
 			throw new Exception("Ya existe una factura con esa id");
 		}
 		billDao.createBill(billDto);
@@ -111,7 +121,6 @@ public class VetService implements AdministratorService, VeterinarianService, Se
 	@Override
 	public void createOrder(OrderDto orderDto) throws Exception {
 		OrderDao orderDao = new OrderDaoImp();
-		
 	}
 }
 

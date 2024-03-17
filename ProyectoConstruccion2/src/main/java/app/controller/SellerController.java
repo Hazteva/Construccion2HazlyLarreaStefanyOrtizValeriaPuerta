@@ -1,6 +1,7 @@
 package app.controller;
 
 import java.util.Scanner;
+
 import app.Validators.BillInputsValidator;
 import app.Validators.PersonInputsValidator;
 import app.service.AdministratorService;
@@ -35,8 +36,6 @@ public class SellerController {
 	
 		System.out.println("Ingrese la cantidad");
 		int quantitty = billInputsValidator.quantityValidator(reader.nextLine());
-		
-		//Terminar la de la fecha		
 	}
 	
 	public void session() {

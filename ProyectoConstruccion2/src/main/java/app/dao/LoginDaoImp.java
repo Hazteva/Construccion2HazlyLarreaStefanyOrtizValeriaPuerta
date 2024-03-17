@@ -13,7 +13,7 @@ public class LoginDaoImp implements LoginDao  {
 
 	@Override
 	public SessionDto login(PersonDto personDto) throws Exception {
-		String query = "INSERT INTO SESION(USERROLL,USERNAME) VALUES (?,?)";
+		String query = "INSERT INTO SESION(ID,USERNAME, ROLE) VALUES (?,?,?)";
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		int i = 1;
 		preparedStatement.setString(i++, personDto.getRol());
@@ -25,8 +25,8 @@ public class LoginDaoImp implements LoginDao  {
 		ResultSet resulSet = preparedStatement.executeQuery();
 		if (resulSet.next()) {
 			long id = resulSet.getLong("ID");
-			String userRol = resulSet.getString("USERROLL");
 			String userName = resulSet.getString("USERNAME");
+			String userRol = resulSet.getString("ROLE");
 			resulSet.close();
 			preparedStatement.close();
 			return new SessionDto(id, userName, userRol);
@@ -47,14 +47,14 @@ public class LoginDaoImp implements LoginDao  {
 
 	@Override
 	public SessionDto findSessionById(long sessionId)throws Exception {
-		String query = "SELECT ID,USERROLL,USERNAME FROM SESION WHERE ID = ?";
+		String query = "SELECT ID,USERNAME, ROLE FROM SESION WHERE ID = ?";
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		preparedStatement.setLong(1, sessionId);
 		ResultSet resulSet = preparedStatement.executeQuery();
 		if (resulSet.next()) {
 			long id = resulSet.getLong("ID");
-			String userRol = resulSet.getString("USERROLL");
 			String userName = resulSet.getString("USERNAME");
+			String userRol = resulSet.getString("ROLE");
 			resulSet.close();
 			preparedStatement.close();
 			return new SessionDto(id, userName, userRol);
@@ -62,5 +62,11 @@ public class LoginDaoImp implements LoginDao  {
 		resulSet.close();
 		preparedStatement.close();
 		return null;
+	}
+
+	@Override
+	public void delectRouter(PersonDto personDto) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 }

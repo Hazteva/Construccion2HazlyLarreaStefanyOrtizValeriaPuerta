@@ -11,7 +11,7 @@ import app.config.MYSQLConnection;
 import app.dto.PetDto;
 import app.models.Pet;
 
-public class PetDaoImp {
+public class PetDaoImp implements PetDao{
 public Connection connection = MYSQLConnection.getConnection();
 	
 	public void createPet(PetDto petDto) throws Exception {
@@ -53,7 +53,7 @@ public Connection connection = MYSQLConnection.getConnection();
 			pet.setAgePet(resulSet.getInt("AGE"));
 			pet.setRace(resulSet.getString("RACE"));
 			pet.setCaracteris(resulSet.getString("CARACTERIS"));
-                        pet.setWeight(resulSet.getDouble("WEIGHT"));
+            pet.setWeight(resulSet.getDouble("WEIGHT"));
 			resulSet.close();
 			preparedStatement.close();
 			return new PetDto();
