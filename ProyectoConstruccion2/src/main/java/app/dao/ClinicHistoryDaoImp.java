@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import app.config.MYSQLConnection;
-import app.dto.BillDto;
 import app.dto.ClinicHistoryDto;
 import app.dto.OrderDto;
 import app.dto.PersonDto;

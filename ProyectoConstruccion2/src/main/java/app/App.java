@@ -11,11 +11,7 @@ public class App {
 
 	private static Scanner reader = new Scanner(System.in);
 	private static LoginController loginController = new LoginController();
-	private static VeterinarianController veterinarianController = new VeterinarianController();
-	private static AdministratorController administratorController = new AdministratorController();
-	private static SellerController sellerController = new SellerController();
 
-	
 	public static void main(String[] args) {
 		boolean run = true;
 		while (run) {
@@ -31,7 +27,7 @@ public class App {
 	}
 	
 	public static boolean runApplication() throws Exception {
-		String menu = "ingrese \n1.Para iniciar sesion\n2.Para ingresar como veterianrio \n3.Para ingresar como administrador \n3.Para ingresar como vendedor";
+		String menu = "ingrese \n1.Para iniciar sesion \n2.Para cerrar la aplicacion";
 		System.out.println(menu);
 		String option = reader.nextLine();
 		switch (option) {
@@ -40,23 +36,13 @@ public class App {
 			return true;
 		}
 		case "2": {
-			veterinarianController.session();
-			return true;
-		}
-		case "3": {
-			administratorController.session();
-			return true;
-		}
-		case "4": {
-			sellerController.session();
-			return true;
+			return false;
 		}
 		default: {
-			System.out.print("ingrese una opcion valida");
+			System.out.print("Ingrese una opcion valida");
 			return true;
 		}
 
 		}
-
 	}
 }
