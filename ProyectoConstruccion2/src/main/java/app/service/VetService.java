@@ -55,7 +55,7 @@ public class VetService implements AdministratorService, VeterinarianService, Se
 			throw new Exception("El Usuario no valido");
 		}
 		if (!personDto.getPassword().equals(personDtoValidate.getPassword())) {
-			throw new Exception("usuario o contraseña incorrectos");
+			throw new Exception("Usuario o contraseña incorrectos");
 		}
 		personDto.setRol(personDtoValidate.getRol());
 		LoginDao loginDao = new LoginDaoImp();
@@ -86,15 +86,20 @@ public class VetService implements AdministratorService, VeterinarianService, Se
 	
 	@Override
 	public void createPet(PetDto petdto) throws Exception{
+		PersonDao personDao = new PersonDaoImp();
 		PetDao petDao = new PetDaoImp();
-		if (petDao.findPetExist(petdto)) {
-			throw new Exception("Ya existe una mascota con esa id");
+		
+		//Se necesita verificar la existencia del dueño
+		if(personDao.findUserExist(null)) {
+			if (petDao.findPetExist(petdto)) {
+				throw new Exception("Ya existe una mascota con esa id");
+			}
+			if (petDao.findPet(petdto)) {
+				throw new Exception("Ya existe la mascota");
+			}
+			petDao.createPet(petdto);
+			System.out.println("Se ha creado la mascota correctamente");	
 		}
-		if (petDao.findPet(petdto)) {
-			throw new Exception("Ya existe la mascota");
-		}
-		petDao.createPet(petdto);
-		System.out.println("Se ha creado la mascota correctamente");	
 	}
 	
 	@Override
@@ -127,5 +132,3 @@ public class VetService implements AdministratorService, VeterinarianService, Se
 		System.out.print("Se ha creado la orden correctamente");
 	}
 }
-
-

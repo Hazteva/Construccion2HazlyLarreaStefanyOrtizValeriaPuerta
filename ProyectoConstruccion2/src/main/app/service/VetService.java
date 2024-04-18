@@ -77,9 +77,9 @@ public class VetService implements AdministratorService, VeterinarianService, Se
 		if (personDao.findUserExist(personDto)) {
 			throw new Exception("Ya existe un usuario con esa cédula");
 		}
-		if (personDao.existUserByUserName(personDto)) {
+		/*if (personDao.existUserByUserName(personDto)) {
 			throw new Exception("Ya existe el usuario");
-		}
+		}*/
 		personDao.createPerson(personDto);
 		System.out.println("Se ha creado el usuario correctamente");
 	}

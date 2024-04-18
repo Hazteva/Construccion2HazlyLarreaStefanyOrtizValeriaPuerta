@@ -16,6 +16,7 @@ public Connection connection = MYSQLConnection.getConnection();
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		int i = 1;
 		preparedStatement.setLong(i++, petDto.getIdPet());
+		preparedStatement.setLong(i++, petDto.getOwner().getId());
 		preparedStatement.setString(i++, petDto.getNamePet());
 		preparedStatement.setString(i++, petDto.getSpecies());
 		preparedStatement.setInt(i++, petDto.getAgePet());

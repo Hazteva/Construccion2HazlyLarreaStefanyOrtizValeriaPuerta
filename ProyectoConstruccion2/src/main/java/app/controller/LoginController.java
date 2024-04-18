@@ -1,11 +1,7 @@
 package app.controller;
 
 import java.util.Scanner;
-import app.dao.LoginDaoImp;
-import app.dao.LoginDao;
-import app.dto.SessionDto;
-import app.dao.PersonDao;
-import app.dao.PersonDaoImp;
+
 import app.Validators.PersonInputsValidator;
 import app.dto.PersonDto;
 import app.service.LoginService;

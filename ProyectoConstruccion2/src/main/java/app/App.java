@@ -11,6 +11,7 @@ public class App {
 
 	private static Scanner reader = new Scanner(System.in);
 	private static LoginController loginController = new LoginController();
+	private static AdministratorController administratorController = new AdministratorController();
 
 	public static void main(String[] args) {
 		boolean run = true;
@@ -26,8 +27,9 @@ public class App {
 		
 	}
 	
+	//hola
 	public static boolean runApplication() throws Exception {
-		String menu = "ingrese \n1.Para iniciar sesion \n2.Para cerrar la aplicacion";
+		String menu = "Ingrese \n1.Para iniciar sesion \n2.Para crear usuario \n3.Para cerrar la aplicacion ";
 		System.out.println(menu);
 		String option = reader.nextLine();
 		switch (option) {
@@ -36,10 +38,14 @@ public class App {
 			return true;
 		}
 		case "2": {
+			administratorController.createUser();
+			return true;
+		}
+		case "3": {
 			return false;
 		}
 		default: {
-			System.out.print("Ingrese una opcion valida");
+			System.out.print("Ingrese una opción valida");
 			return true;
 		}
 
