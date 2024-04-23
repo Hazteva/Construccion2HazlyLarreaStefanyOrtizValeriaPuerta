@@ -30,7 +30,6 @@ public class VeterinarianController {
 		System.out.println("Ingrese el número de documento");
 		long id = personInputsValidator.idValidator(reader.nextLine());
 		
-		
 		System.out.println("Ingrese la edad");
 		int age = personInputsValidator.ageValidator(reader.nextLine());
 		
@@ -63,7 +62,7 @@ public class VeterinarianController {
 		System.out.println("Ingrese la edad de la mascota");
 		int agePet = petInputsValidator.agePetValidator(reader.nextLine());
 		
-		System.out.println("Ingrese la edad");
+		System.out.println("Ingrese la identificación");
 		long idPet = petInputsValidator.idPetValidator(reader.nextLine());
 		
 		System.out.println("Ingrese la especie");
@@ -78,15 +77,14 @@ public class VeterinarianController {
 		String caracteris = reader.nextLine();
 		petInputsValidator.caracterisValidators( caracteris);
 		
-		System.out.println("Ingrese la edad");
+		System.out.println("Ingrese el peso");
 		double weight = petInputsValidator.weightValidators(reader.nextLine());	
 		
 		PetDto petDto = new PetDto();
-		petDto.setIdPet(idPet);
 		petDto.setNamePet(namePet);
-		petDto.setAgePet(agePet);
-		petDto.setCaracteris(caracteris);
 		petDto.setOwner(personDto);
+		petDto.setAgePet(agePet);
+		petDto.setIdPet(idPet);
 		petDto.setSpecies(species);
 		petDto.setRace(race);
 		petDto.setCaracteris(caracteris);
@@ -104,7 +102,7 @@ public class VeterinarianController {
 		System.out.println("Ingrese la mascota");
 		long idPet = petInputsValidator.idPetValidator(reader.nextLine());
 		PetDto petDto= new PetDto();
-		petDto.setIdPet(idVeterinarian);
+		petDto.setIdPet(idPet);
 		
 		System.out.println("Razones de la consulta");
 		String reasonForConsultation = reader.nextLine();
@@ -141,33 +139,34 @@ public class VeterinarianController {
 		
 		ClinicHistoryDto clinicHistoryDto = new ClinicHistoryDto();
 		clinicHistoryDto.setDate(System.currentTimeMillis());
+		clinicHistoryDto.setVeterinarian(personDto);
+		clinicHistoryDto.setPet(petDto);
 		clinicHistoryDto.setReasonForConsultation(reasonForConsultation);
 		clinicHistoryDto.setSymptomatology(symptomatology);
 		clinicHistoryDto.setMedicines(medicines);
 		clinicHistoryDto.setProcedure(procedureDetails);
+		clinicHistoryDto.setIdOrder(orderDto);
 		clinicHistoryDto.setVaccinationHistory(vaccinationHistory);
 		clinicHistoryDto.setAllergies(allergies);
 		clinicHistoryDto.setProcedureDetails(procedureDetails);
-		VeterinarianService.createClinicHistory(clinicHistoryDto);
 	}
 	
 	public void createOrder() throws Exception{
 		PersonDto personDto= new PersonDto();
 		
 		System.out.println("Id de la orden");
-		String idOrder = reader.nextLine();
-		orderInputsValidators.idOrderValidator(idOrder);
+		Long idOrder = orderInputsValidators.idOrderValidator(reader.nextLine());
 		
 		System.out.println("Ingrese el id de la mascota");
 		long idPet = petInputsValidator.idPetValidator(reader.nextLine());
 		PetDto petDto= new PetDto();
 		petDto.setIdPet(idPet);
 		
-		System.out.println("Ingrese la cedula del dueño");
+		System.out.println("Ingrese la cédula del dueño");
 		long idOwner = personInputsValidator.idValidator(reader.nextLine());
 		personDto.setId(idOwner);
 		
-		System.out.println("Ingrese la cedula del veterinario");
+		System.out.println("Ingrese la cédula del veterinario");
 		long idVeterinarian = personInputsValidator.idValidator(reader.nextLine());
 		personDto.setId(idVeterinarian);
 		
@@ -176,9 +175,9 @@ public class VeterinarianController {
 		orderInputsValidators.medicineNameValidator(medicineName);
 		
 		OrderDto orderDto = new OrderDto();
-		orderDto.setIdOrder(idVeterinarian);
-		orderDto.setIdOwner(personDto);
+		orderDto.setIdOrder(idOrder);
 		orderDto.setIdPet(petDto);
+		orderDto.setIdOwner(personDto);
 		orderDto.setIdVeterinarian(personDto);
 		orderDto.setMedicineName(medicineName);
 		VeterinarianService.createOrder(orderDto);

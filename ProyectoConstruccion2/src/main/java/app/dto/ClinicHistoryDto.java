@@ -6,7 +6,7 @@ import app.models.Pet;
 
 public class ClinicHistoryDto {
 	private Long date;
-	private Pet pet;
+	private PetDto pet;
 	private PersonDto veterinarian;
 	private String reasonForConsultation;
 	private String symptomatology;
@@ -26,14 +26,14 @@ public class ClinicHistoryDto {
 		this.date = date;
 	}
 	
-	public Pet getPet() {
+	public PetDto getPet() {
 		return pet;
 	}
-	
-	public void setPet(Pet pet) {
+
+	public void setPet(PetDto pet) {
 		this.pet = pet;
 	}
-	
+
 	public PersonDto getVeterinarian() {
 		return veterinarian;
 	}

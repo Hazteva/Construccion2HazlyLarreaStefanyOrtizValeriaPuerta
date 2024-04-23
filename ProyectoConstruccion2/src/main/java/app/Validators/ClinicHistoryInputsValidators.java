@@ -7,7 +7,7 @@ public class ClinicHistoryInputsValidators extends InputsValidators {
 	}
 	
 	public void petValidators(String pet)throws Exception {
-		super.stringValidator(pet, pet);
+		super.stringValidator(pet, "id de la mascota");
 	}
 	
 	public void veterinarianValidators(String veterinarian)throws Exception {
