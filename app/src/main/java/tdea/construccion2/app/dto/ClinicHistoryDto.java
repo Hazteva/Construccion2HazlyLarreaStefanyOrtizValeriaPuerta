@@ -5,7 +5,7 @@ import tdea.construccion2.app.models.Pet;
 
 public class ClinicHistoryDto {
 	private Long date;
-	private Pet pet;
+	private PetDto pet;
 	private PersonDto veterinarian;
 	private String reasonForConsultation;
 	private String symptomatology;
@@ -18,7 +18,7 @@ public class ClinicHistoryDto {
 	
 	public ClinicHistoryDto(ClinicHistory clinicHistory) {
 		this.date=clinicHistory.getDate();
-		this.pet=clinicHistory.getPet();
+		this.pet=new PetDto(clinicHistory.getPet());
 		this.veterinarian= new PersonDto(clinicHistory.getVeterinarian());
 		this.reasonForConsultation=clinicHistory.getReasonForConsultation();
 		this.symptomatology=clinicHistory.getSymptomatology();
@@ -42,11 +42,11 @@ public class ClinicHistoryDto {
 		this.date = date;
 	}
 	
-	public Pet getPet() {
+	public PetDto getPet() {
 		return pet;
 	}
 	
-	public void setPet(Pet pet) {
+	public void setPet(PetDto pet) {
 		this.pet = pet;
 	}
 	

@@ -19,9 +19,9 @@ import tdea.construccion2.app.dao.BillDao;
 import tdea.construccion2.app.dao.ClinicHistoryDao;
 import tdea.construccion2.app.dao.OrderDao;
 
-
 @Service
-public class VetService implements AdministratorService, VeterinarianService, SellerService, LoginService, OrderService{
+public class VetService
+		implements AdministratorService, VeterinarianService, SellerService, LoginService, OrderService {
 	List<String> roles = Arrays.asList("Administrador", "Veterinario", "Vendedor", "Dueño", "Mascota");
 	private static long sessionId = 0L;
 
@@ -37,7 +37,7 @@ public class VetService implements AdministratorService, VeterinarianService, Se
 	private ClinicHistoryDao clinicHistoryDao;
 	@Autowired
 	private OrderDao orderDao;
-	 
+
 	@Override
 	public void createUser(PersonDto personDto) throws Exception {
 		if (!roles.contains(personDto.getRol())) {
@@ -52,13 +52,13 @@ public class VetService implements AdministratorService, VeterinarianService, Se
 		personDao.createPerson(personDto);
 		System.out.println("Se ha creado el usuario correctamente");
 	}
-	
+
 	@Override
 	public void setSesionID(long sesionId) {
 		sessionId = sesionId;
 	}
 
-	@Override
+	@Override 
 	public void login(PersonDto personDto) throws Exception {
 		PersonDto personDtoValidate = personDao.findUserByUserName(personDto);
 		if (personDtoValidate == null) {
@@ -87,46 +87,49 @@ public class VetService implements AdministratorService, VeterinarianService, Se
 		personDao.createPerson(personDto);
 		System.out.println("Se ha creado el usuario correctamente");
 	}
-	
+
 	@Override
-	public void createPet(PetDto petdto) throws Exception{
-		
-		//Se necesita verificar la existencia del dueño
-		if(petDao.findPetExist(petdto)) {
-			if (personDao.findUserExist(persondto)) {
-				throw new Exception("Ya existe un dueño");
+	public void createPet(PetDto petdto) throws Exception {
+		if (petDao.findPetExist(petdto)) {
+			if (!personDao.findUserExist(petdto.getOwner())) {
+				throw new Exception("No existe un dueño");
 			}
 			petDao.createPet(petdto);
-			System.out.println("Se ha creado la mascota correctamente");	
+			System.out.println("Se ha creado la mascota correctamente");
 		}
 	}
-	
+
 	@Override
-	public void createBill(BillDto billDto)throws Exception{
-		if(billDao.findBillExist(billDto)) {
+	public void createBill(BillDto billDto) throws Exception {
+		if (billDao.findBillExist(billDto)) {
 			throw new Exception("Ya esxiste la factura");
 		}
-		if(billDao.findBill(billDto)) {
+		if (billDao.findBill(billDto)) {
 			throw new Exception("Ya existe una factura con esa id");
 		}
 		billDao.createBill(billDto);
 		System.out.println("Se ha creado la factura correctamente");
 	}
-	
+
 	@Override
 	public void createClinicHistory(ClinicHistoryDto clinicHistoryDto) throws Exception {
-		if(clinicHistoryDao.findBillById(clinicHistoryDto)) {
-			throw new Exception("Ya está la historia clinica");
+		SessionDto sessionDto = loginDao.findSessionById(sessionId);
+		PersonDto personDto = new PersonDto();
+		personDto.setUserName(sessionDto.getUserName());
+		personDto = personDao.findUserByUserName(personDto);
+		clinicHistoryDto.setVeterinarian(personDto);
+		if (!petDao.findPetExist(clinicHistoryDto.getPet())) {
+			throw new Exception("no existe la mascota");
 		}
+		OrderDto orderDto=new OrderDto();
+		//llenar los atributos con los set
+		createOrder(orderDto);
 		clinicHistoryDao.createClinicHistory(clinicHistoryDto);
 		System.out.print("Se ha creado la historia clinica correctamente");
 	}
 
 	@Override
 	public void createOrder(OrderDto orderDto) throws Exception {
-		if(orderDao.findOrderExist(orderDto)) {
-			
-		}
 		
 		orderDao.createOrder(orderDto);
 		System.out.print("Se ha creado la orden correctamente");
@@ -179,5 +182,5 @@ public class VetService implements AdministratorService, VeterinarianService, Se
 	public void setOrderDao(OrderDao orderDao) {
 		this.orderDao = orderDao;
 	}
-	
+
 }

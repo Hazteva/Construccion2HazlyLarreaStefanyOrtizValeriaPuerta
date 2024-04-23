@@ -34,7 +34,7 @@ public class ClinicHistory {
 	private String procedureDetails;
 	
 	public ClinicHistory(ClinicHistoryDto clinicHistoryDto) {
-		this.pet=clinicHistoryDto.getPet();
+		this.pet=new Pet(clinicHistoryDto.getPet());
 		this.veterinarian= new Person(clinicHistoryDto.getVeterinarian());
 		this.reasonForConsultation=clinicHistoryDto.getReasonForConsultation();
 		this.symptomatology=clinicHistoryDto.getSymptomatology();

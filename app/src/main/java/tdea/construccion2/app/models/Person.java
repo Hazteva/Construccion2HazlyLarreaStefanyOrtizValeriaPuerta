@@ -32,6 +32,10 @@ public class Person {
 		this.password=personDto.getPassword();
 	}
 	
+	public Person() {
+		
+	}
+	
 	public long getId() {
 		return id;
 	}

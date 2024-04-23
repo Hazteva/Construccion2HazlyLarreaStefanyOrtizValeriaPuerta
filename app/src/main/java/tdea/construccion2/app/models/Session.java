@@ -26,6 +26,10 @@ public class Session {
 		this.userRoll=sessionDto.getUserRoll();
 	}
 	
+	public Session() {
+
+	}
+
 	public long getId() {
 		return id;
 	}
