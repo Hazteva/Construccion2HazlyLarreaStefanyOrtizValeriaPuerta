@@ -5,12 +5,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderInputsValidators extends InputsValidators {
 	
-	public long idOrderValidator(String number)throws Exception {
-		return super.integerValidator(number, " id de la orden");
+	public long idOrderValidator(String idOrder)throws Exception {
+		return super.integerValidator(idOrder, " id de la orden");
 	}
 	
-	public long idPetValidator(String number) throws Exception{
-		return super.integerValidator(number, " id de la mascota");	
+	public long idPetValidator(String idPet) throws Exception{
+		return super.integerValidator(idPet, " id de la mascota");	
 	}
 	
 	public long idOwnerValidator(String idOwner)throws Exception {

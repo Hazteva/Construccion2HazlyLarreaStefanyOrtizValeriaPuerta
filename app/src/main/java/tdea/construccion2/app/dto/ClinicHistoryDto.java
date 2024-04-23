@@ -5,7 +5,7 @@ import tdea.construccion2.app.models.Pet;
 
 public class ClinicHistoryDto {
 	private Long date;
-	private Pet pet;
+	private PetDto pet;
 	private PersonDto veterinarian;
 	private String reasonForConsultation;
 	private String symptomatology;
