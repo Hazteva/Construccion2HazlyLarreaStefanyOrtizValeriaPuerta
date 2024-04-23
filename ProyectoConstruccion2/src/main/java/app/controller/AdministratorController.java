@@ -27,15 +27,15 @@ public class AdministratorController {
 		
 		System.out.println("Ingrese el rol");
 		String rol = reader.nextLine();
-		personInputValidator.fullNameValidator(rol);
+		personInputValidator.rolValidator(rol);
 		
 		System.out.println("Ingrese nombre de usuario");
 		String userName = reader.nextLine();
-		personInputValidator.fullNameValidator(userName);
+		personInputValidator.userNameValidator(userName);
 		
 		System.out.println("Ingrese la contraseña");
 		String password = reader.nextLine();
-		personInputValidator.fullNameValidator(password);
+		personInputValidator.passwordValidator(password);
 		
 		PersonDto personDto = new PersonDto(id, fullName, age, rol, userName, password);
 		administratorService.createUser(personDto);
