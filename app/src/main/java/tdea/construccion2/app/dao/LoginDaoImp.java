@@ -24,11 +24,19 @@ public class LoginDaoImp implements LoginDao  {
 
 	@Override
 	public void logout(long sessionId) throws Exception {
+		Session session = sessionRepository.findSessionById(sessionId);
+		if(session!=null) {
+			sessionRepository.delete(session);
+		}
 	}
 
 	@Override
 	public SessionDto findSessionById(long sessionId)throws Exception {
-		return null;
+		Session session = sessionRepository.findSessionById(sessionId);
+		if(session==null) {
+			return null;
+		}
+		return new SessionDto(session);
 	}
 
 	@Override

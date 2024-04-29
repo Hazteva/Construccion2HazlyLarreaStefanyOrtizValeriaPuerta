@@ -14,22 +14,28 @@ public class PersonDaoImp implements PersonDao{
 	
 	@Override
 	public void createPerson(PersonDto personDto) throws Exception {
+		Person person = new Person(personDto);
+		personRepository.save(person);
 	}
 
 	@Override
 	public boolean findUserExist(PersonDto personDto) throws Exception {
-		return true;
+		return personRepository.existsById(personDto.getId());
 	}
 
 	@Override
 	public PersonDto findUserById(PersonDto personDto) throws Exception {
+		Person person = personRepository.findById(personDto.getId());
+		if(person==null) {
 		return null;
+		}
+		return new PersonDto(person);
 	}
 
 	@Override
 	public boolean existUserByUserName(PersonDto personDto) throws Exception {
-		return true;
-	}
+		personRepository.existsByUserName(personDto.getUserName());
+        }
 
 	@Override
 	public PersonDto findUserByUserName(PersonDto personDto) throws Exception {
@@ -47,7 +53,5 @@ public class PersonDaoImp implements PersonDao{
 
 	public void setPersonRepository(PersonRepository personRepository) {
 		this.personRepository = personRepository;
-	}
-	
-	
+	}	
 }

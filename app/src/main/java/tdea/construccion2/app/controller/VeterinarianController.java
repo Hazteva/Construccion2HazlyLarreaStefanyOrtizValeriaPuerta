@@ -158,7 +158,6 @@ public class VeterinarianController {
 		
 		System.out.println("Id de la orden");
 		long idOrder = orderInputsValidators.idOrderValidator(reader.nextLine());
-		orderInputsValidators.idOrderValidator(idOrder);
 		
 		System.out.println("Ingrese el id de la mascota");
 		long idPet = petInputsValidator.idPetValidator(reader.nextLine());
