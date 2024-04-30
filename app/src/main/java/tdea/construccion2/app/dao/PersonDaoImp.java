@@ -1,6 +1,8 @@
 package tdea.construccion2.app.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+
 import org.springframework.stereotype.Service;
 
 import tdea.construccion2.app.dto.PersonDto;
@@ -34,8 +36,8 @@ public class PersonDaoImp implements PersonDao{
 
 	@Override
 	public boolean existUserByUserName(PersonDto personDto) throws Exception {
-		personRepository.existsByUserName(personDto.getUserName());
-        }
+		return personRepository.existsByUserName(personDto.getUserName());
+    }
 
 	@Override
 	public PersonDto findUserByUserName(PersonDto personDto) throws Exception {

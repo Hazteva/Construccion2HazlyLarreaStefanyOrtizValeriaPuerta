@@ -6,5 +6,5 @@ public interface PetDao {
 	
 	public void createPet(PetDto petDto) throws Exception;
 	public boolean findPetExist(PetDto petDto) throws Exception;
-	public boolean findPet(PetDto petDto) throws Exception;
+	public PetDto findPet(PetDto petDto) throws Exception;
 }
