@@ -104,7 +104,7 @@ public class VetService
 		if (billDao.findBillExist(billDto)) {
 			throw new Exception("Ya esxiste la factura");
 		}
-		if (billDao.findBill(billDto)) {
+		if (billDao.findBill(billDto)!=null) {
 			throw new Exception("Ya existe una factura con esa id");
 		}
 		billDao.createBill(billDto);
@@ -121,8 +121,12 @@ public class VetService
 		if (!petDao.findPetExist(clinicHistoryDto.getPet())) {
 			throw new Exception("no existe la mascota");
 		}
-		OrderDto orderDto=new OrderDto();
-		//llenar los atributos con los set
+                PetDto petDto = new PetDto();
+		OrderDto orderDto = new OrderDto();
+		orderDto.setIdPet(petDto);
+		orderDto.setIdOwner(personDto);
+		orderDto.setIdVeterinarian(personDto);
+		orderDto.setMedicineName(clinicHistoryDto.getMedicines());
 		createOrder(orderDto);
 		clinicHistoryDao.createClinicHistory(clinicHistoryDto);
 		System.out.print("Se ha creado la historia clinica correctamente");

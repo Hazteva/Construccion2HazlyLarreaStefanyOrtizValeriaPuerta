@@ -34,6 +34,15 @@ public class BillDaoImp implements BillDao{
 		return billRepository.findBillExist(billDto.getIdBill());
 	}
 
+        public BillDto findBill(BillDto billDto) throws Exception {
+            Bill bill = billRepository.findBill(billDto.getIdBill());
+            if(bill == null){
+                return null;
+            }else{
+                return new BillDto(bill);
+            }        
+        }
+        
 	public BillRepository getBillRepository() {
 		return billRepository;
 	}
@@ -41,5 +50,4 @@ public class BillDaoImp implements BillDao{
 	public void setBillRepository(BillRepository billRepository) {
 		this.billRepository = billRepository;
 	}
-	
 }

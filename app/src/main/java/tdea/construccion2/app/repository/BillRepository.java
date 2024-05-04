@@ -7,6 +7,7 @@ import tdea.construccion2.app.models.Bill;
 @Repository
 public interface BillRepository extends JpaRepository<Bill, Long>{
 	public Bill findBillById(long id);
-	public boolean findBillExist(String bill);
+	public boolean findBillExist(long bill);
+        public Bill findBill(long id);
 
 }
