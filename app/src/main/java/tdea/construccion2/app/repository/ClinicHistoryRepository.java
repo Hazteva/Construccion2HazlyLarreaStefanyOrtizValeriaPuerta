@@ -7,8 +7,8 @@ import tdea.construccion2.app.models.ClinicHistory;
 
 @Repository
 public interface ClinicHistoryRepository extends JpaRepository<ClinicHistory, Long> {
-	public boolean existBypet(String pet);
-        public ClinicHistory findBypet(String pet);
-        public boolean existByidOrder(long id);
-        public ClinicHistory findByidOrder(long id);
+	public boolean existByPet(String pet);
+        public ClinicHistory findByPet(String pet);
+        public boolean existByIdOrder(long id);
+        public ClinicHistory findByIdOrder(long id);
 }

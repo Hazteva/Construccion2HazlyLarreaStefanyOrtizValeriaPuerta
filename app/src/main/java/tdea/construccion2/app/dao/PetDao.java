@@ -4,8 +4,8 @@ import tdea.construccion2.app.dto.PetDto;
 
 public interface PetDao {
 	public void createPet(PetDto petDto) throws Exception;
-	public boolean existdBynamePet(PetDto petDto) throws Exception;
-	public PetDto findBynamePet(PetDto petDto) throws Exception;
-        public boolean findexistById(PetDto petDto) throws Exception;
+	public boolean existByNamePet(PetDto petDto) throws Exception;
+	public PetDto findByNamePet(PetDto petDto) throws Exception;
+        public boolean findExistById(PetDto petDto) throws Exception;
         public PetDto findPetById(PetDto petDto) throws Exception;
 }

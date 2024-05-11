@@ -87,7 +87,7 @@ public class VetService implements AdministratorService, VeterinarianService, Se
 
 	@Override
 	public void createPet(PetDto petdto) throws Exception {
-		if (petDao.findPetExist(petdto)) {
+		if (petDao.existdByNamePet(petdto)) {
 			if (!personDao.findUserExist(petdto.getOwner())) {
 				throw new Exception("No existe un dueño");
 			}
@@ -110,7 +110,7 @@ public class VetService implements AdministratorService, VeterinarianService, Se
 		personDto.setUserName(sessionDto.getUserName());
 		personDto = personDao.findUserByUserName(personDto);
 		clinicHistoryDto.setVeterinarian(personDto);
-		if (!petDao.findPetExist(clinicHistoryDto.getPet())) {
+		if (!petDao.existdByNamePet(clinicHistoryDto.getPet())) {
 			throw new Exception("no existe la mascota");
 		}
                 PetDto petDto = new PetDto();
@@ -126,7 +126,9 @@ public class VetService implements AdministratorService, VeterinarianService, Se
 
 	@Override
 	public void createOrder(OrderDto orderDto) throws Exception {
-		
+                if (!orderDao.findOrderExistByIdPet(orderDto.getIdPet().getIdPet())) {
+			throw new Exception("no existe la mascota");
+		}
 		orderDao.createOrder(orderDto);
 		System.out.print("Se ha creado la orden correctamente");
 	}
