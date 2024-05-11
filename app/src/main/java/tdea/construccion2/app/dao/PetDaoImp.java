@@ -18,7 +18,7 @@ public class PetDaoImp implements PetDao{
 		petRepository.save(pet);
 	}
 
-	public boolean findPetExist(PetDto petDto) throws Exception {
+	public boolean findPetBynamePet(PetDto petDto) throws Exception {
 		return petRepository.findPetExist(petDto.getNamePet());
 	}
 
