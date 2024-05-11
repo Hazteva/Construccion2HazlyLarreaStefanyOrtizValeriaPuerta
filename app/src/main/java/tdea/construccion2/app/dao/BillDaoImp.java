@@ -20,7 +20,7 @@ public class BillDaoImp implements BillDao{
 		billRepository.save(bill);
 	}
 	
-	public BillDto findBillById(BillDto billDto) throws Exception {	
+	public BillDto findBillByidBill(BillDto billDto) throws Exception {	
 		Bill bill = billRepository.findBillById(billDto.getIdBill());
 		if(bill == null) {
 			return null;

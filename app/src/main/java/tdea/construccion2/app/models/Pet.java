@@ -12,6 +12,8 @@ import tdea.construccion2.app.dto.PetDto;
 @Table(name="mascota")
 public class Pet {
 	@Id
+        @Column(name="id")
+	private long idPet;
 	@Column(name="nombre")
 	private String namePet;
 	@ManyToOne
@@ -19,8 +21,6 @@ public class Pet {
 	private Person owner;
 	@Column(name="edad")
 	private int agePet;
-	@Column(name="id")
-	private long idPet;
 	@Column(name="especie")
 	private String species;
 	@Column(name="raza")
