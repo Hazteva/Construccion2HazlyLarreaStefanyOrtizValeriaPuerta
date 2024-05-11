@@ -19,13 +19,13 @@ public class ClinicHistoryDaoImp implements ClinicHistoryDao{
 	}
 	 
         @Override
-	public boolean existBypet(ClinicHistoryDto clinicHistoryDto) throws Exception {
-		return clinicHistoryRepository.existBypet(clinicHistoryDto.getPet().getNamePet());
+	public boolean existByPet(ClinicHistoryDto clinicHistoryDto) throws Exception {
+		return clinicHistoryRepository.existByPet(clinicHistoryDto.getPet().getNamePet());
 	}
         
 	@Override  
 	public ClinicHistoryDto findByPet(ClinicHistoryDto clinicHistoryDto) throws Exception {
-		ClinicHistory clinicHistory = clinicHistoryRepository.findBypet(clinicHistoryDto.getPet().getNamePet());
+		ClinicHistory clinicHistory = clinicHistoryRepository.findByPet(clinicHistoryDto.getPet().getNamePet());
 		if(clinicHistory == null) {
 			return null;
 		}else {
@@ -34,13 +34,13 @@ public class ClinicHistoryDaoImp implements ClinicHistoryDao{
 	} 
 
         @Override
-	public boolean findexistByidOrder(ClinicHistoryDto clinicHistoryDto) throws Exception {
-		return clinicHistoryRepository.existByidOrder(clinicHistoryDto.getIdOrder().getIdOrder());
+	public boolean findExistByIdOrder(ClinicHistoryDto clinicHistoryDto) throws Exception {
+		return clinicHistoryRepository.existByIdOrder(clinicHistoryDto.getIdOrder().getIdOrder());
 	}
         
 	@Override  
-	public ClinicHistoryDto findByidOrder(ClinicHistoryDto clinicHistoryDto) throws Exception {
-		ClinicHistory clinicHistory = clinicHistoryRepository.findByidOrder(clinicHistoryDto.getIdOrder().getIdOrder());
+	public ClinicHistoryDto findByIdOrder(ClinicHistoryDto clinicHistoryDto) throws Exception {
+		ClinicHistory clinicHistory = clinicHistoryRepository.findByIdOrder(clinicHistoryDto.getIdOrder().getIdOrder());
 		if(clinicHistory == null) {
 			return null;
 		}else {
