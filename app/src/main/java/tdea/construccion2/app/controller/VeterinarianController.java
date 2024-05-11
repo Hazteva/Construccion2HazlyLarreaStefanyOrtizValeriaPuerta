@@ -1,10 +1,11 @@
 package tdea.construccion2.app.controller;
 
 import java.util.Scanner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import tdea.construccion2.app.Validators.ClinicHistoryInputsValidators;
 import tdea.construccion2.app.Validators.OrderInputsValidators;
 import tdea.construccion2.app.Validators.PersonInputsValidator;
-import tdea.construccion2.app.service.VetService;
 import tdea.construccion2.app.service.VeterinarianService;
 import tdea.construccion2.app.Validators.PetInputsValidators;
 import tdea.construccion2.app.dto.OrderDto;
@@ -12,13 +13,20 @@ import tdea.construccion2.app.dto.ClinicHistoryDto;
 import tdea.construccion2.app.dto.PersonDto;
 import tdea.construccion2.app.dto.PetDto;
 
+//Habias error ya que faltaban los autowired
+
+@Component
 public class VeterinarianController {
-	
-	private static VeterinarianService VeterinarianService = new VetService();
-	private static PersonInputsValidator personInputsValidator = new PersonInputsValidator();
-	private static OrderInputsValidators orderInputsValidators = new OrderInputsValidators();
-	private static PetInputsValidators petInputsValidator = new PetInputsValidators();
-	private static ClinicHistoryInputsValidators clinicHistoryInputsValidators = new ClinicHistoryInputsValidators();
+	@Autowired
+	private VeterinarianService VeterinarianService;
+        @Autowired
+	private PersonInputsValidator personInputsValidator;
+        @Autowired
+	private OrderInputsValidators orderInputsValidators;
+        @Autowired
+	private PetInputsValidators petInputsValidator;
+        @Autowired
+	private ClinicHistoryInputsValidators clinicHistoryInputsValidators;
 	private static final String MENU = "ingrese \n1.Para crear dueño \n2.Para crear mascota \n3.Para crear historia clinica \n4.Para crear orden";
 	private static Scanner reader = new Scanner(System.in); 
 	
@@ -222,4 +230,44 @@ public class VeterinarianController {
 		}
 		}
 	}
+
+    public VeterinarianService getVeterinarianService() {
+        return VeterinarianService;
+    }
+
+    public void setVeterinarianService(VeterinarianService VeterinarianService) {
+        this.VeterinarianService = VeterinarianService;
+    }
+
+    public PersonInputsValidator getPersonInputsValidator() {
+        return personInputsValidator;
+    }
+
+    public void setPersonInputsValidator(PersonInputsValidator personInputsValidator) {
+        this.personInputsValidator = personInputsValidator;
+    }
+
+    public OrderInputsValidators getOrderInputsValidators() {
+        return orderInputsValidators;
+    }
+
+    public void setOrderInputsValidators(OrderInputsValidators orderInputsValidators) {
+        this.orderInputsValidators = orderInputsValidators;
+    }
+
+    public PetInputsValidators getPetInputsValidator() {
+        return petInputsValidator;
+    }
+
+    public void setPetInputsValidator(PetInputsValidators petInputsValidator) {
+        this.petInputsValidator = petInputsValidator;
+    }
+
+    public ClinicHistoryInputsValidators getClinicHistoryInputsValidators() {
+        return clinicHistoryInputsValidators;
+    }
+
+    public void setClinicHistoryInputsValidators(ClinicHistoryInputsValidators clinicHistoryInputsValidators) {
+        this.clinicHistoryInputsValidators = clinicHistoryInputsValidators;
+    }
 }

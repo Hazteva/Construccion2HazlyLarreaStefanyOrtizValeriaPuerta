@@ -1,17 +1,14 @@
 package tdea.construccion2.app.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-
 import org.springframework.stereotype.Service;
-
 import tdea.construccion2.app.dto.PersonDto;
 import tdea.construccion2.app.models.Person;
 import tdea.construccion2.app.repository.PersonRepository;
 
 @Service
 public class PersonDaoImp implements PersonDao{
-	@Autowired
+    @Autowired
 	private PersonRepository personRepository;
 	
 	@Override
@@ -43,7 +40,7 @@ public class PersonDaoImp implements PersonDao{
 	public PersonDto findUserByUserName(PersonDto personDto) throws Exception {
 		Person person = personRepository.findByUserName(personDto.getUserName());
 		if(person == null) {
-			return null;
+                    return null;
 		}else {
 			return new PersonDto(person);
 		}

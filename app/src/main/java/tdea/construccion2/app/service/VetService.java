@@ -2,10 +2,8 @@ package tdea.construccion2.app.service;
 
 import java.util.Arrays;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import tdea.construccion2.app.dto.BillDto;
 import tdea.construccion2.app.dto.ClinicHistoryDto;
 import tdea.construccion2.app.dto.OrderDto;
@@ -20,8 +18,7 @@ import tdea.construccion2.app.dao.ClinicHistoryDao;
 import tdea.construccion2.app.dao.OrderDao;
 
 @Service
-public class VetService
-		implements AdministratorService, VeterinarianService, SellerService, LoginService, OrderService {
+public class VetService implements AdministratorService, VeterinarianService, SellerService, LoginService, OrderService {
 	List<String> roles = Arrays.asList("Administrador", "Veterinario", "Vendedor", "Dueño", "Mascota");
 	private static long sessionId = 0L;
 

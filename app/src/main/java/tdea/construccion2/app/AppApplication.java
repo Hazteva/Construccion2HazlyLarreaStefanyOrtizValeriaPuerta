@@ -29,7 +29,7 @@ public class AppApplication implements CommandLineRunner{
 		boolean run = true;
 		while (run) {
 			try {
-				run = runApplication();
+			run = runApplication();
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
@@ -77,7 +77,4 @@ public class AppApplication implements CommandLineRunner{
 	public void setAdministratorController(AdministratorController administratorController) {
 		this.administratorController = administratorController;
 	}
-	
-	
-
 }
