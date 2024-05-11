@@ -98,8 +98,9 @@ public class VetService implements AdministratorService, VeterinarianService, Se
 
 	@Override
 	public void createBill(BillDto billDto) throws Exception {
-		billDao.createBill(billDto);
-		System.out.println("Se ha creado la factura correctamente");
+            
+            billDao.createBill(billDto);
+            System.out.println("Se ha creado la factura correctamente");
 	}
 
 	@Override
