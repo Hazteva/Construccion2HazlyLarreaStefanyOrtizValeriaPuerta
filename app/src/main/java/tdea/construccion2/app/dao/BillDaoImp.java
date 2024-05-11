@@ -20,8 +20,9 @@ public class BillDaoImp implements BillDao{
 		billRepository.save(bill);
 	}
 	
-	public BillDto findBillById(BillDto billDto) throws Exception {	
-		Bill bill = billRepository.findBillById(billDto.getIdBill());
+        @Override
+	public BillDto findBillByIdBill(BillDto billDto) throws Exception {	
+		Bill bill = billRepository.findBillByIdBill(billDto.getIdBill());
 		if(bill == null) {
 			return null;
 		}else {
@@ -30,17 +31,24 @@ public class BillDaoImp implements BillDao{
 	}
 
 	@Override
-	public boolean findBillExist(BillDto billDto) throws Exception {
-		return billRepository.findBillExist(billDto.getIdBill());
+	public boolean findBillExistByIdBill(BillDto billDto) throws Exception {
+		return billRepository.findBillExistByIdBill(billDto.getIdBill());
 	}
-
-        public BillDto findBill(BillDto billDto) throws Exception {
-            Bill bill = billRepository.findBill(billDto.getIdBill());
+        
+        @Override
+        public BillDto finBillByIdPet(BillDto billDto) throws Exception{
+            Bill bill = billRepository.finBillByIdPet(billDto.getIdPet().getIdPet());
             if(bill == null){
                 return null;
-            }else{
+            }
+            else{
                 return new BillDto(bill);
-            }        
+            }
+        }
+        
+        @Override
+        public boolean finBillExistByIdPet(BillDto billDto) throws Exception{
+            return billRepository.finBillExistByIdPet(billDto.getIdPet().getIdPet());
         }
         
 	public BillRepository getBillRepository() {

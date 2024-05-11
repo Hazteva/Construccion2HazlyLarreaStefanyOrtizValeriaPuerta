@@ -98,12 +98,6 @@ public class VetService implements AdministratorService, VeterinarianService, Se
 
 	@Override
 	public void createBill(BillDto billDto) throws Exception {
-		if (billDao.findBillExist(billDto)) {
-			throw new Exception("Ya esxiste la factura");
-		}
-		if (billDao.findBill(billDto)!=null) {
-			throw new Exception("Ya existe una factura con esa id");
-		}
 		billDao.createBill(billDto);
 		System.out.println("Se ha creado la factura correctamente");
 	}

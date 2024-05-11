@@ -9,5 +9,4 @@ public interface PetRepository extends JpaRepository<Pet, Long>{
 	public Pet findBynamePet(String pet);
 	public Pet findPetById(long id);
 	public boolean findPetExist(String pet);
-	
 }
