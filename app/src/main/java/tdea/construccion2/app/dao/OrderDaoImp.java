@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tdea.construccion2.app.dto.OrderDto;
 import tdea.construccion2.app.models.Order;
+import tdea.construccion2.app.models.Pet;
 import tdea.construccion2.app.repository.OrderRepository;
 
 @Service
@@ -20,8 +21,8 @@ public class OrderDaoImp implements OrderDao{
 	}
 	
         @Override
-        public OrderDto findOrderByIdOrder(OrderDto orderDto) throws Exception {
-            Order order = orderRepository.findOrderByIdOrder(orderDto.getIdOrder());
+        public OrderDto findOrderById(OrderDto orderDto) throws Exception {
+            Order order = orderRepository.findOrderById(orderDto.getIdOrder());
             if(order == null) {
 		return null;
             }else {
@@ -30,13 +31,13 @@ public class OrderDaoImp implements OrderDao{
 	}
         
         @Override
-	public boolean findOrderExistByIdOrder(OrderDto orderDto) throws Exception {
-            return orderRepository.findOrderExistByIdOrder(orderDto.getIdPet().getIdPet());
+	public boolean existsById(OrderDto orderDto) throws Exception {
+            return orderRepository.existsById(orderDto.getIdPet().getIdPet());
 	}
         
         @Override
         public OrderDto findOrderByIdPet(OrderDto orderDto) throws Exception {
-            Order order = orderRepository.findOrderByIdPet(orderDto.getIdPet().getIdPet());
+            Order order = orderRepository.findOrderByIdPet( new Pet(orderDto.getIdPet()));
             if(order == null) {
                 return null;
             }else {
@@ -45,8 +46,8 @@ public class OrderDaoImp implements OrderDao{
 	}
         
         @Override
-	public boolean findOrderExistByIdPet(OrderDto orderDto) throws Exception {
-            return orderRepository.findOrderExistByIdPet(orderDto.getIdOrder());
+	public boolean existsByIdPet(OrderDto orderDto) throws Exception {
+            return orderRepository.existsByIdPet(new Pet(orderDto.getIdPet()));
 	}
         
 	public OrderRepository getOrderRepository() {

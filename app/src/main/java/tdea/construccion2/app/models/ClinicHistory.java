@@ -3,6 +3,8 @@ package tdea.construccion2.app.models;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import tdea.construccion2.app.dto.ClinicHistoryDto;
 
@@ -12,9 +14,11 @@ public class ClinicHistory {
 	@Id
 	@Column(name="fecha")
 	private Long date;
-	@Column(name="mascota")
+        @ManyToOne
+	@JoinColumn(name="mascota")
 	private Pet pet;
-	@Column(name="medico")
+        @ManyToOne
+	@JoinColumn(name="medico")
 	private Person veterinarian;
 	@Column(name="motivo")
 	private String reasonForConsultation;
@@ -24,7 +28,8 @@ public class ClinicHistory {
 	private String procedure;
 	@Column(name="medicamento")
 	private String medicines;
-	@Column(name="orden")
+        @ManyToOne
+	@JoinColumn(name="orden")
 	private Order idOrder;
 	@Column(name="vacunacion")
 	private String vaccinationHistory;
@@ -46,6 +51,9 @@ public class ClinicHistory {
 		this.procedureDetails=clinicHistoryDto.getProcedureDetails();
 	} 
 	
+        public ClinicHistory(){
+        
+        }
 
 	public Long getDate() {
 		return date;

@@ -23,8 +23,8 @@ public class LoginController {
 	private SellerController sellerController;
         
 
-	
-	private static LoginService loginService = new VetService();
+	@Autowired
+	private LoginService loginService;
 
 	public void login() throws Exception {
 		System.out.println("ingrese su usuario");
@@ -101,13 +101,13 @@ public class LoginController {
 	}
 
 
-	public static LoginService getLoginService() {
+	public LoginService getLoginService() {
 		return loginService;
 	}
 
 
-	public static void setLoginService(LoginService loginService) {
-		LoginController.loginService = loginService;
+	public void setLoginService(LoginService loginService) {
+		this.loginService = loginService;
 	}
 	
 	

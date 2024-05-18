@@ -214,16 +214,17 @@ public class VeterinarianController {
 		}
 		case "2": {
 			createPet();
-			return false;
+			return true;
 		}
 		case "3": {
 			createClinicHistory();
-			return false;
+			return true;
 		}
 		case "4": {
 			createOrder();
-			return false;
+			return true;
 		}
+                case "5":{return false;}
 		default :{
 			System.out.println("Ingrese una opcion valida");
 			return true;

@@ -18,7 +18,7 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
-	private long idOrder;
+	private long id;
 	@ManyToOne
 	@JoinColumn(name="mascota")
 	private Pet idPet;
@@ -34,18 +34,22 @@ public class Order {
 	private Date generationDate;
 	
 	public Order(OrderDto orderDto) {
-		this.idOrder=orderDto.getIdOrder();
+		this.id=orderDto.getIdOrder();
 		this.idPet= new Pet(orderDto.getIdPet());
 		this.idOwner=new Person(orderDto.getIdOwner());
 		this.medicineName=orderDto.getMedicineName();
 	}
 	
+        public Order(){
+        
+        }
+        
 	public long getIdOrder() {
-		return idOrder;
+		return id;
 	}
 	
 	public void setIdOrder(long idOrder) {
-		this.idOrder = idOrder;
+		this.id = idOrder;
 	}
 	
 	public Pet getIdPet() {

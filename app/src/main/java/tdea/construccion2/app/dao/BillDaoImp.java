@@ -31,25 +31,11 @@ public class BillDaoImp implements BillDao{
 	}
 
 	@Override
-	public boolean findBillExistByIdBill(BillDto billDto) throws Exception {
-		return billRepository.findBillExistByIdBill(billDto.getIdBill());
+	public boolean existsByIdBill(BillDto billDto) throws Exception {
+		return billRepository.existsByIdBill(billDto.getIdBill());
 	}
         
-        @Override
-        public BillDto finBillByIdPet(BillDto billDto) throws Exception{
-            Bill bill = billRepository.finBillByIdPet(billDto.getIdPet().getIdPet());
-            if(bill == null){
-                return null;
-            }
-            else{
-                return new BillDto(bill);
-            }
-        }
         
-        @Override
-        public boolean finBillExistByIdPet(BillDto billDto) throws Exception{
-            return billRepository.finBillExistByIdPet(billDto.getIdPet().getIdPet());
-        }
         
 	public BillRepository getBillRepository() {
 		return billRepository;

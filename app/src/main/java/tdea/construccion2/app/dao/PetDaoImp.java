@@ -18,11 +18,12 @@ public class PetDaoImp implements PetDao{
 	}
 
         @Override
-	public boolean findExistById(PetDto petDto) throws Exception {
-		return petRepository.existById(petDto.getIdPet());
+	public boolean existsByIdPet(PetDto petDto) throws Exception {
+		return petRepository.existsById(petDto.getIdPet());
 	}
 
-	public PetDto findPetById(PetDto petDto) throws Exception {
+        @Override
+	public PetDto findByIdPet(PetDto petDto) throws Exception {
 		Pet pet = petRepository.findByIdPet(petDto.getIdPet());
 		if(pet == null) {
 			return null;
@@ -32,13 +33,13 @@ public class PetDaoImp implements PetDao{
 	}
        
         @Override 
-        public boolean existByNamePet(PetDto petDto) throws Exception{
-            return petRepository.existByNamePet(petDto.getNamePet());
+        public boolean existsByNamePet(PetDto petDto) throws Exception{
+            return petRepository.existsPetByNamePet(petDto.getNamePet());
         }
         
 	@Override
 	public PetDto findByNamePet(PetDto petDto) throws Exception {
-            Pet pet = petRepository.findByamePet(petDto.getNamePet());
+            Pet pet = petRepository.findByNamePet(petDto.getNamePet());
             if(pet == null) {
 		return null;
             }else {

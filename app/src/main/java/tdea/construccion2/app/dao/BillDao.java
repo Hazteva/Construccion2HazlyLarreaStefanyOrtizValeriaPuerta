@@ -6,7 +6,5 @@ public interface BillDao {
 	
 	public void createBill(BillDto billDto) throws Exception;
         public BillDto findBillByIdBill(BillDto billDto) throws Exception;
-	public boolean findBillExistByIdBill(BillDto billDto)throws Exception;
-	public BillDto finBillByIdPet(BillDto billDto) throws Exception;
-        public boolean finBillExistByIdPet(BillDto billDto)throws Exception;
+	public boolean existsByIdBill(BillDto billDto)throws Exception;
 }

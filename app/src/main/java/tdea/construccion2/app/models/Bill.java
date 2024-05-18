@@ -43,6 +43,10 @@ public class Bill {
 		this.idOwner=new Person(billDto.getOwnerId());
 	}
 	
+        public Bill(){
+        
+        }
+        
 	public long getIdBill() {
 		return idBill;
 	}

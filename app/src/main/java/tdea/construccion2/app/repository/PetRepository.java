@@ -6,8 +6,8 @@ import tdea.construccion2.app.models.Pet;
 
 @Repository
 public interface PetRepository extends JpaRepository<Pet, Long>{
-        public boolean existByNamePet(String namePet);
-	public Pet findByamePet(String pet);
-        public boolean existById(long id);
+        public boolean existsPetByNamePet(String namePet);
+	public Pet findByNamePet(String pet);
+        public boolean existsByIdPet(long id);
 	public Pet findByIdPet(long id);	
 }

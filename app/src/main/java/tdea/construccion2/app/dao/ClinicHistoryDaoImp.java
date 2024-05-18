@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tdea.construccion2.app.repository.ClinicHistoryRepository;
 import tdea.construccion2.app.dao.ClinicHistoryDaoImp;
+import tdea.construccion2.app.models.Pet;
 
 @Service
 public class ClinicHistoryDaoImp implements ClinicHistoryDao{
@@ -17,15 +18,15 @@ public class ClinicHistoryDaoImp implements ClinicHistoryDao{
 		ClinicHistory clinicHistory = new ClinicHistory(clinicHistoryDto);
 		clinicHistoryRepository.save(clinicHistory);
 	}
-	 
+        
         @Override
-	public boolean existByPet(ClinicHistoryDto clinicHistoryDto) throws Exception {
-		return clinicHistoryRepository.existByPet(clinicHistoryDto.getPet().getNamePet());
+	public boolean existsByPet(ClinicHistoryDto clinicHistoryDto) throws Exception {
+		return clinicHistoryRepository.existsByPet(new Pet(clinicHistoryDto.getPet()));
 	}
         
 	@Override  
 	public ClinicHistoryDto findByPet(ClinicHistoryDto clinicHistoryDto) throws Exception {
-		ClinicHistory clinicHistory = clinicHistoryRepository.findByPet(clinicHistoryDto.getPet().getNamePet());
+		ClinicHistory clinicHistory = clinicHistoryRepository.findByPet(new Pet(clinicHistoryDto.getPet()));
 		if(clinicHistory == null) {
 			return null;
 		}else {
@@ -34,13 +35,13 @@ public class ClinicHistoryDaoImp implements ClinicHistoryDao{
 	} 
 
         @Override
-	public boolean findExistByIdOrder(ClinicHistoryDto clinicHistoryDto) throws Exception {
-		return clinicHistoryRepository.existByIdOrder(clinicHistoryDto.getIdOrder().getIdOrder());
+	public boolean existsById(ClinicHistoryDto clinicHistoryDto) throws Exception {
+		return clinicHistoryRepository.existsById(clinicHistoryDto.getIdOrder().getIdOrder());
 	}
         
 	@Override  
-	public ClinicHistoryDto findByIdOrder(ClinicHistoryDto clinicHistoryDto) throws Exception {
-		ClinicHistory clinicHistory = clinicHistoryRepository.findByIdOrder(clinicHistoryDto.getIdOrder().getIdOrder());
+	public ClinicHistoryDto findById(ClinicHistoryDto clinicHistoryDto) throws Exception {
+		ClinicHistory clinicHistory = clinicHistoryRepository.findById(clinicHistoryDto.getIdOrder().getIdOrder());
 		if(clinicHistory == null) {
 			return null;
 		}else {
