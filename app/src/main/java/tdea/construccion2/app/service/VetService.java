@@ -110,23 +110,28 @@ public class VetService implements AdministratorService, VeterinarianService, Se
         PersonDto personDto = new PersonDto();
         personDto.setUserName(sessionDto.getUserName());
         personDto = personDao.findUserByUserName(personDto);
-        
-        PetDto petDto = new PetDto();
-        petDto.setIdPet(sessionId);
-        petDto = petDao.findByIdPet(petDto);
-        
+
+        PetDto petDto = petDao.findByIdPet(clinicHistoryDto.getPet());
+        if (petDto == null) {
+
+            throw new Exception("mascota nula");
+        }
+
         personDto = personDao.findUserByUserName(personDto);
         clinicHistoryDto.setVeterinarian(personDto);
-        if (!petDao.existsByIdPet(clinicHistoryDto.getPet())) {
+       /* if (!petDao.existsByIdPet(clinicHistoryDto.getPet())) {
             throw new Exception("no existe la mascota");
-        }
+        }*/
         /* PetDto petDto = new PetDto();*/
         OrderDto orderDto = new OrderDto();
-        /*orderDto.setIdPet(petDto);*/
-        orderDto.setIdOwner(personDto);
+        orderDto.setIdPet(petDto);
+        orderDto.setIdOwner(petDto.getOwner());
         orderDto.setIdVeterinarian(personDto);
         orderDto.setMedicineName(clinicHistoryDto.getMedicines());
         createOrder(orderDto);
+        clinicHistoryDto.setIdOrder(orderDto);
+        clinicHistoryDto.setPet(petDto);
+        clinicHistoryDto.setVeterinarian(personDto);
         clinicHistoryDao.createClinicHistory(clinicHistoryDto);
         System.out.print("Se ha creado la historia clinica correctamente");
     }

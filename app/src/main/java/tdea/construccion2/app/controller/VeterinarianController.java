@@ -111,7 +111,7 @@ public class VeterinarianController {
 		System.out.println("Ingrese la mascota");
 		long idPet = petInputsValidator.idPetValidator(reader.nextLine());
 		PetDto petDto= new PetDto();
-		petDto.setIdPet(idVeterinarian);
+		petDto.setIdPet(idPet);
 		
 		System.out.println("Razones de la consulta");
 		String reasonForConsultation = reader.nextLine();
@@ -150,6 +150,7 @@ public class VeterinarianController {
 		clinicHistoryDto.setDate(System.currentTimeMillis());
 		clinicHistoryDto.setVeterinarian(personDto);
 		clinicHistoryDto.setPet(petDto);
+                System.out.println("id de la mascota" + clinicHistoryDto.getPet().getIdPet());
 		clinicHistoryDto.setReasonForConsultation(reasonForConsultation);
 		clinicHistoryDto.setSymptomatology(symptomatology);
 		clinicHistoryDto.setMedicines(medicines);
