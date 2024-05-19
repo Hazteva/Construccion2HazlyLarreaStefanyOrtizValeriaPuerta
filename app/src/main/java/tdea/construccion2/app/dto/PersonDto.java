@@ -34,7 +34,9 @@ public class PersonDto {
 		this.password = person.getPassword();
 	}
 	
-	public PersonDto() {};
+	public PersonDto() {
+        
+        };
 
 	public long getId() {
 		return id;

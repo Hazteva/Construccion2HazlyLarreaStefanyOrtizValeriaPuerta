@@ -110,13 +110,19 @@ public class VetService implements AdministratorService, VeterinarianService, Se
         PersonDto personDto = new PersonDto();
         personDto.setUserName(sessionDto.getUserName());
         personDto = personDao.findUserByUserName(personDto);
+        
+        PetDto petDto = new PetDto();
+        petDto.setIdPet(sessionId);
+        petDto = petDao.findByIdPet(petDto);
+        
+        personDto = personDao.findUserByUserName(personDto);
         clinicHistoryDto.setVeterinarian(personDto);
-        if (!petDao.existsByNamePet(clinicHistoryDto.getPet())) {
+        if (!petDao.existsByIdPet(clinicHistoryDto.getPet())) {
             throw new Exception("no existe la mascota");
         }
-        PetDto petDto = new PetDto();
+        /* PetDto petDto = new PetDto();*/
         OrderDto orderDto = new OrderDto();
-        orderDto.setIdPet(petDto);
+        /*orderDto.setIdPet(petDto);*/
         orderDto.setIdOwner(personDto);
         orderDto.setIdVeterinarian(personDto);
         orderDto.setMedicineName(clinicHistoryDto.getMedicines());

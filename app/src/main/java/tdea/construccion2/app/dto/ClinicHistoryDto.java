@@ -122,4 +122,8 @@ public class ClinicHistoryDto {
 		this.procedureDetails = procedureDetails;
 	}	
 
+    public void setIdPet(PetDto petDto) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }
