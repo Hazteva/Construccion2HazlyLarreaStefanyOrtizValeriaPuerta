@@ -19,7 +19,7 @@ public class PetDaoImp implements PetDao{
 
         @Override
 	public boolean existsByIdPet(PetDto petDto) throws Exception {
-		return petRepository.existsById(petDto.getIdPet());
+		return petRepository.existsByIdPet(petDto.getIdPet());
 	}
 
         @Override

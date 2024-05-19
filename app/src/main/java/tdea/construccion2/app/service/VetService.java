@@ -80,10 +80,10 @@ public class VetService implements AdministratorService, VeterinarianService, Se
     @Override
     public void createOwner(PersonDto personDto) throws Exception {
         if (personDao.findUserExist(personDto)) {
-            throw new Exception("Ya existe un usuario con esa cédula");
+            throw new Exception("Ya existe un dueño con esa cédula");
         }
         personDao.createPerson(personDto);
-        System.out.println("Se ha creado el usuario correctamente");
+        System.out.println("Se ha creado el dueño correctamente");
     }
 
     @Override
