@@ -13,8 +13,6 @@ import tdea.construccion2.app.dto.ClinicHistoryDto;
 import tdea.construccion2.app.dto.PersonDto;
 import tdea.construccion2.app.dto.PetDto;
 
-//Habias error ya que faltaban los autowired
-
 @Component
 public class VeterinarianController {
 	@Autowired
@@ -129,10 +127,6 @@ public class VeterinarianController {
 		String procedure = reader.nextLine();
 		clinicHistoryInputsValidators.procedureValidators(procedure);
 		
-		System.out.println("Ingrese el id de la orden");
-		long idOrder = orderInputsValidators.idOrderValidator(reader.nextLine());
-		OrderDto orderDto= new OrderDto();
-		orderDto.setIdOrder(idOrder);
 		
 		System.out.println("Historial de vacunación");
 		String vaccinationHistory = reader.nextLine();
@@ -145,20 +139,35 @@ public class VeterinarianController {
 		System.out.println("Detalles del procedimiento");
 		String procedureDetails = reader.nextLine();
 		clinicHistoryInputsValidators.procedureDetailsValidators(procedureDetails);
+                
+                System.out.println("Diagnostico");
+		String diagnosis = reader.nextLine();
+		clinicHistoryInputsValidators.diagnosisValidators(diagnosis);
+                
+                System.out.println("Dosis del medicamento");
+		String medicationDosage = reader.nextLine();
+		clinicHistoryInputsValidators.medicationDosageValidators(medicationDosage);
+                
+                System.out.println("Cancelar odern");
+		String ordercancelation = reader.nextLine();
+		clinicHistoryInputsValidators.ordercancelationValidators(ordercancelation);
 		
 		ClinicHistoryDto clinicHistoryDto = new ClinicHistoryDto();
 		clinicHistoryDto.setDate(System.currentTimeMillis());
 		clinicHistoryDto.setVeterinarian(personDto);
 		clinicHistoryDto.setPet(petDto);
-                System.out.println("id de la mascota" + clinicHistoryDto.getPet().getIdPet());
+                System.out.println("id de la mascota" + " " + clinicHistoryDto.getPet().getIdPet());
 		clinicHistoryDto.setReasonForConsultation(reasonForConsultation);
 		clinicHistoryDto.setSymptomatology(symptomatology);
 		clinicHistoryDto.setMedicines(medicines);
 		clinicHistoryDto.setProcedure(procedureDetails);
-		clinicHistoryDto.setIdOrder(orderDto);
+		/*clinicHistoryDto.setIdOrder(orderDto);*/
 		clinicHistoryDto.setVaccinationHistory(vaccinationHistory);
 		clinicHistoryDto.setAllergies(allergies);
 		clinicHistoryDto.setProcedureDetails(procedureDetails);
+                clinicHistoryDto.setDiagnosis(diagnosis);
+                clinicHistoryDto.setMedicationDosage(medicationDosage);
+                clinicHistoryDto.setOrdercancelation(false);
 		VeterinarianService.createClinicHistory(clinicHistoryDto);
 	}
 	
@@ -219,10 +228,6 @@ public class VeterinarianController {
 		}
 		case "3": {
 			createClinicHistory();
-			return true;
-		}
-		case "4": {
-			createOrder();
 			return true;
 		}
                 case "5":{return false;}

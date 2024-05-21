@@ -1,5 +1,6 @@
 package tdea.construccion2.app.controller;
 
+import java.sql.Date;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +53,7 @@ public class SellerController {
 		int quantitty = billInputsValidator.quantityValidator(reader.nextLine());
 		
 		BillDto billDto = new BillDto();
-		billDto.setDate(null);
+		billDto.setDate(new Date(System.currentTimeMillis()));
 		billDto.setIdBill(idBill);
 		billDto.setIdPet(petDto);
 		billDto.setOwnerId(personDto);
@@ -131,5 +132,6 @@ public class SellerController {
 	public void setSellerService(SellerService sellerService) {
 		this.sellerService = sellerService;
 	}
-			
+	
+        
 }
