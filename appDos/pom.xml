@@ -36,6 +36,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+	 <dependency>
+	  <groupId>cn.authing</groupId>
+	  <artifactId>java-sdk-spring-boot</artifactId>
+	  <version>1.0.5</version>
+	  <type>jar</type>
+	 </dependency>
 	</dependencies>
 
 	<build>

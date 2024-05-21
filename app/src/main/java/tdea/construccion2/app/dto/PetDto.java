@@ -22,6 +22,7 @@ public class PetDto {
 		this.weight=pet.getWeight();
 	}
 	  
+        
 	public PetDto() {
 		// TODO Auto-generated constructor stub
 	}

@@ -22,6 +22,28 @@ public class BillDto {
 		this.date=bill.getDate();
 	}
 	
+        public BillDto(long idBill, PetDto idPet, PersonDto idOwner, String productName, double price, int quantity, Date date){
+            this.idBill = idBill;
+            this.idPet = idPet;
+            this.idOwner = idOwner;
+            this.productName = productName;
+            this.price= price;
+            this.quantity = quantity;
+            this.date = date;
+        }
+        
+        /*public PetDto(String namePet, PersonDto owner, int agePet, long idPet, String species, String race, String caracteris, double weight ){
+            super();
+            this.namePet = namePet;
+            this.owner = owner;
+            this.agePet = agePet;
+            this.idPet = idPet;
+            this.race = race;
+            this.caracteris = caracteris;
+            this.weight = weight;
+        }
+       */
+        
 	public BillDto() {
 		// TODO Auto-generated constructor stub
 	}

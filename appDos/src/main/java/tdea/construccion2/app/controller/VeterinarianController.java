@@ -6,10 +6,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import tdea.construccion2.app.Validators.PersonInputsValidator;
+import tdea.construccion2.app.Validators.PetInputsValidators;
+import tdea.construccion2.app.controller.request.CreatePetRequest;
 
 import tdea.construccion2.app.controller.request.CreateUserRequest;
 import tdea.construccion2.app.dto.PersonDto;
+import tdea.construccion2.app.dto.PetDto;
 import tdea.construccion2.app.service.VetService;
+import tdea.construccion2.controller.response.CreatePetResponse;
 import tdea.construccion2.controller.response.CreateUserResponse;
 
 @RestController
@@ -19,7 +23,9 @@ public class VeterinarianController {
     
     @Autowired
     private PersonInputsValidator personInputsValidator;
-    
+    @Autowired
+    private PetInputsValidators petInputsValidators;
+     
     @PostMapping("/user")
     public ResponseEntity<CreateUserResponse> createUser(@RequestBody CreateUserRequest request){
         CreateUserResponse response = new CreateUserResponse();
@@ -49,7 +55,42 @@ public class VeterinarianController {
         }
     }
     
+    
     /*Agregar el pet*/
+    @PostMapping("/pet")
+    public ResponseEntity<CreatePetResponse> createPet(@RequestBody CreatePetRequest request){
+        CreatePetResponse response = new CreatePetResponse();
+        long idPet;
+        try{
+            idPet = petInputsValidators.idPetValidator(request.getIdPet());
+            petInputsValidators.namePetValidator(request.getNamePet());
+            petInputsValidators.ownerValidator(request.getOwner());
+            petInputsValidators.namePetValidator(request.getNamePet());
+            petInputsValidators.agePetValidator(request.getAgePet());
+            petInputsValidators.speciesValidators(request.getSpecies());
+            petInputsValidators.raceValidators(request.getRace());
+            petInputsValidators.caracterisValidators(request.getCaracteris());
+            petInputsValidators.weightValidators(request.getWeight());
+        }catch(Exception e){
+            response.setMessagePet(e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+        try{
+            /*PetDto petDto = new PetDto(idPet, request.getNamePet(), request.getOwner(), request.getAgePet(), request.getSpecies(), request.getRace(), request.getCaracteris(), request.getWeight() );*/
+            PetDto petDto = new PetDto();
+            vetService.createPet(petDto);
+            response.setMessagePet("Mascota creada");
+            response.setIdPet(request.getIdPet());
+            return ResponseEntity.ok().body(response);
+        }catch(Exception e){
+            response.setMessagePet(e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+    
+   
+    
+    
     /*Agregar el clinicHistory*/
     /*Agregar el bill*/
 } 
