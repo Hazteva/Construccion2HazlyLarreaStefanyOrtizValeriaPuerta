@@ -13,7 +13,7 @@ import tdea.construccion2.app.dto.ClinicHistoryDto;
 public class ClinicHistory {
 	@Id
 	@Column(name="fecha")
-	private Long date;
+	private long date;
         @ManyToOne
 	@JoinColumn(name="mascota")
 	private Pet pet;
@@ -66,11 +66,11 @@ public class ClinicHistory {
         
         }
 
-	public Long getDate() {
+	public long getDate() {
 		return date;
 	}
 	
-	public void setDate(Long date) {
+	public void setDate(long date) {
 		this.date = date;
 	}
 	

@@ -14,6 +14,7 @@ import tdea.construccion2.app.controller.request.CreateUserRequest;
 import tdea.construccion2.app.dto.ClinicHistoryDto;
 import tdea.construccion2.app.dto.PersonDto;
 import tdea.construccion2.app.dto.PetDto;
+import tdea.construccion2.app.dto.OrderDto;
 import tdea.construccion2.app.service.VetService;
 import tdea.construccion2.controller.response.CreateClinicHistoryResponse;
 import tdea.construccion2.controller.response.CreatePetResponse;
@@ -98,19 +99,16 @@ public class VeterinarianController {
         long date;
         long pet;
         long veterinarian;
+        long idOrder;
         try{
-            //date= clinicHistoryInputsValidators.dateValidators(request.getDate());
-            clinicHistoryInputsValidators.dateValidators(request.getDate());
-            clinicHistoryInputsValidators.dateValidators(request.getDate());
-            //pet= clinicHistoryInputsValidators.petValidators(request.getPet());
-            clinicHistoryInputsValidators.petValidators(request.getPet());
-            clinicHistoryInputsValidators.petValidators(request.getPet());
-            clinicHistoryInputsValidators.veterinarianValidators(request.getVeterinarian());
+            date = clinicHistoryInputsValidators.dateValidators(request.getDate());
+            pet = clinicHistoryInputsValidators.petValidators(request.getPet());
+            veterinarian = clinicHistoryInputsValidators.veterinarianValidators(request.getVeterinarian());
             clinicHistoryInputsValidators.reasonForConsultationValidators(request.getReasonForConsultation());
             clinicHistoryInputsValidators.symptomatologyValidators(request.getSymptomatology());
             clinicHistoryInputsValidators.procedureValidators(request.getProcedure());
             clinicHistoryInputsValidators.medicinesValidators(request.getMedicines());
-            clinicHistoryInputsValidators.idOrderValidators(request.getIdOrder());
+            idOrder = clinicHistoryInputsValidators.idOrderValidators(request.getIdOrder());
             clinicHistoryInputsValidators.vaccinationHistoryValidators(request.getVaccinationHistory());
             clinicHistoryInputsValidators.allergiesValidators(request.getAllergies());
             clinicHistoryInputsValidators.procedureDetailsValidators(request.getProcedureDetails());
@@ -123,8 +121,13 @@ public class VeterinarianController {
         }
         
         try{
-            //ClinicHistoryDto clinicHistoryDto = new ClinicHistoryDto(request.getDate(),request.getPet(),request.getVeterinarian(),request.getReasonForConsultation(), request.getSymptomatology(),request.getProcedure(),request.getMedicines(),request.getIdOrder(),request.getVaccinationHistory(),request.getAllergies(),request.getProcedureDetails(),request.getDiagnosis(),request.getMedicationDosage(),request.getOrdercancelation());
-            ClinicHistoryDto clinicHistoryDto = new ClinicHistoryDto();
+            PetDto petDto = new PetDto();
+            petDto.setIdPet(pet);
+            PersonDto personDto = new PersonDto();
+            personDto.setId(veterinarian);
+            OrderDto orderDto = new OrderDto();
+            orderDto.setIdOrder(idOrder);
+            ClinicHistoryDto clinicHistoryDto = new ClinicHistoryDto(date, petDto, personDto,request.getReasonForConsultation(), request.getSymptomatology(),request.getProcedure(),request.getMedicines(), orderDto,request.getVaccinationHistory(),request.getAllergies(),request.getProcedureDetails(),request.getDiagnosis(),request.getMedicationDosage(),request.getOrdercancelation());
             vetService.createClinicHistory(clinicHistoryDto);
             response.setMessageClinicHistory("History clinica creada");
             response.setDate(request.getDate());
