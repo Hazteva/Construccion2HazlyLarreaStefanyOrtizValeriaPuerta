@@ -4,7 +4,7 @@ import tdea.construccion2.app.models.ClinicHistory;
 import tdea.construccion2.app.models.Pet;
 
 public class ClinicHistoryDto {
-	private Long date;
+	private long date;
 	private PetDto pet;
 	private PersonDto veterinarian;
 	private String reasonForConsultation;
@@ -40,11 +40,11 @@ public class ClinicHistoryDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Long getDate() {
+	public long getDate() {
 		return date;
 	}
 	
-	public void setDate(Long date) {
+	public void setDate(long date) {
 		this.date = date;
 	}
 	

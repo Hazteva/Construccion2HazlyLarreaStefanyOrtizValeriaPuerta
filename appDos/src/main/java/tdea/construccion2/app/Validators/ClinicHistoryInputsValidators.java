@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 public class ClinicHistoryInputsValidators extends InputsValidators {
 
 	public void dateValidators(String date)throws Exception {
-		super.stringValidator(date, " fecha");
+		super.longValidator(date, " fecha");
 	}
 	
 	public void petValidators(String pet)throws Exception {
