@@ -1,5 +1,6 @@
 package tdea.construccion2.app.controller.request;
 
+import java.sql.Date;
 import org.antlr.v4.runtime.misc.NotNull;
 
 public class CreateBillRequest {

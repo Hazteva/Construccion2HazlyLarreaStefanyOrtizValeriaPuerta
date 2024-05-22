@@ -1,12 +1,13 @@
 package tdea.construccion2.app.Validators;
 
+import java.sql.Date;
 import org.springframework.stereotype.Component;
 
 @Component
 public class BillInputsValidator extends InputsValidators{
 	
 	public long idBillValidator(String number)throws Exception {
-		return super.integerValidator(number, " id de la factura");
+		return super.longValidator(number, "Id de la factura");
 	}
 	
 	public long idPetValidator(String idPet) throws Exception{
@@ -27,5 +28,9 @@ public class BillInputsValidator extends InputsValidators{
 	
 	public int quantityValidator(String quantity) throws Exception{
 		return super.integerValidator(quantity, " edad");	
+	}
+        
+        public int dateValidator(String date) throws Exception{
+		return super.integerValidator(date, " fecha");	
 	}
 }

@@ -22,7 +22,7 @@ public class PetDto {
 		this.weight=pet.getWeight();
 	}
 	  
-        public PetDto(String namePet, PersonDto owner, int agePet, long idPet, String species, String race, String caracteris, double weight ){
+        public PetDto(long idPet, String namePet, PersonDto owner, String species, String race, String caracteris, int agePet, double weight ){
             super();
             this.namePet = namePet;
             this.owner = owner;

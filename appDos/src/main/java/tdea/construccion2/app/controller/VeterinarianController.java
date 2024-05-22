@@ -55,29 +55,30 @@ public class VeterinarianController {
         }
     }
     
-    
-    /*Agregar el pet*/
     @PostMapping("/pet")
     public ResponseEntity<CreatePetResponse> createPet(@RequestBody CreatePetRequest request){
         CreatePetResponse response = new CreatePetResponse();
+        int agePet;
         long idPet;
+        long owner;
+        double weight;
         try{
             idPet = petInputsValidators.idPetValidator(request.getIdPet());
             petInputsValidators.namePetValidator(request.getNamePet());
-            petInputsValidators.ownerValidator(request.getOwner());
-            petInputsValidators.namePetValidator(request.getNamePet());
-            petInputsValidators.agePetValidator(request.getAgePet());
+            owner = personInputsValidator.idValidator(request.getOwner());
+            agePet = petInputsValidators.agePetValidator(request.getAgePet());
             petInputsValidators.speciesValidators(request.getSpecies());
             petInputsValidators.raceValidators(request.getRace());
             petInputsValidators.caracterisValidators(request.getCaracteris());
-            petInputsValidators.weightValidators(request.getWeight());
+            weight = petInputsValidators.weightValidators(request.getWeight());
         }catch(Exception e){
             response.setMessagePet(e.getMessage());
             return ResponseEntity.badRequest().body(response);
         }
         try{
-            /*PetDto petDto = new PetDto(idPet, request.getNamePet(), request.getOwner(), request.getAgePet(), request.getSpecies(), request.getRace(), request.getCaracteris(), request.getWeight() );*/
-            PetDto petDto = new PetDto();
+            PersonDto personDto = new PersonDto();
+            personDto.setId(owner);
+            PetDto petDto = new PetDto(idPet, request.getNamePet(), personDto, request.getSpecies(), request.getRace(), request.getCaracteris(), agePet, weight);
             vetService.createPet(petDto);
             response.setMessagePet("Mascota creada");
             response.setIdPet(request.getIdPet());
@@ -87,11 +88,5 @@ public class VeterinarianController {
             return ResponseEntity.badRequest().body(response);
         }
     }
-    
-   
-    
-    
-    /*Agregar el clinicHistory*/
-    /*Agregar el bill*/
 } 
  
