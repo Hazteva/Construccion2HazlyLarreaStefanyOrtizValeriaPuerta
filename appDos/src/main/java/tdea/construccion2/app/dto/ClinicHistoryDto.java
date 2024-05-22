@@ -1,5 +1,6 @@
 package tdea.construccion2.app.dto;
 
+import java.sql.Date;
 import tdea.construccion2.app.models.ClinicHistory;
 import tdea.construccion2.app.models.Pet;
 
@@ -20,7 +21,7 @@ public class ClinicHistoryDto {
         private boolean ordercancelation;
 	
 	public ClinicHistoryDto(ClinicHistory clinicHistory) {
-		this.date=clinicHistory.getDate();
+		this.date= clinicHistory.getDate();
 		this.pet=new PetDto(clinicHistory.getPet());
 		this.veterinarian= new PersonDto(clinicHistory.getVeterinarian());
 		this.reasonForConsultation=clinicHistory.getReasonForConsultation();
@@ -36,6 +37,22 @@ public class ClinicHistoryDto {
                 this.ordercancelation=clinicHistory.getOrdercancelation();
 	}
 
+        public ClinicHistoryDto(long date, PetDto pet, PersonDto veterinarian, String reasonForConsultation, String symptomatology, String procedure, String medicines, OrderDto order, String vaccinationHistory, String allergies, String procedureDetails, String diagnosis, String medicationDosage, boolean ordercancelation) {
+            this.date = date;
+            this.pet = pet;
+            this.veterinarian = veterinarian;
+            this.reasonForConsultation = reasonForConsultation;
+            this.symptomatology = symptomatology;
+            this.procedure =procedure;
+            this.medicines = medicines;
+            this.idOrder = idOrder;
+            this.vaccinationHistory = vaccinationHistory;
+            this.allergies = allergies;
+            this.procedureDetails = procedureDetails;
+            this.diagnosis = diagnosis;
+            this.medicationDosage = medicationDosage;
+            this.ordercancelation  = ordercancelation;
+        }
 	public ClinicHistoryDto() {
 		// TODO Auto-generated constructor stub
 	}

@@ -5,16 +5,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class ClinicHistoryInputsValidators extends InputsValidators {
 
-	public void dateValidators(String date)throws Exception {
-		super.longValidator(date, " fecha");
+	public long dateValidators(String date)throws Exception {
+		return super.integerValidator(date, " fecha");
 	}
 	
-	public void petValidators(String pet)throws Exception {
-		super.stringValidator(pet, pet);
+	public long petValidators(String pet)throws Exception {
+		return super.integerValidator(pet, " id de la mascota");
 	}
 	
-	public void veterinarianValidators(String veterinarian)throws Exception {
-		super.stringValidator(veterinarian, " nombre del veterinario");
+	public long veterinarianValidators(String veterinarian)throws Exception {
+		return super.integerValidator(veterinarian, " nombre del veterinario");
 	}
 	
 	public void reasonForConsultationValidators(String reasonForConsultation)throws Exception {
@@ -32,8 +32,8 @@ public class ClinicHistoryInputsValidators extends InputsValidators {
 	public void medicinesValidators(String medicines)throws Exception {
 		super.stringValidator(medicines, " medicamentos");
 	}
-	public void idOrderValidators(String idOrder)throws Exception {
-		super.stringValidator(idOrder, " orden medica");
+	public long idOrderValidators(String idOrder)throws Exception {
+		return super.integerValidator(idOrder, " orden medica");
 	}
 	
 	public void vaccinationHistoryValidators(String vaccinationHistory)throws Exception {
@@ -56,7 +56,10 @@ public class ClinicHistoryInputsValidators extends InputsValidators {
 		super.stringValidator(medicationDosage, " dosis del medicamento");
 	}
         
-        public void ordercancelationValidators(String ordercancelation)throws Exception {
-		super.stringValidator(ordercancelation, " cancelar orden");
-	}
+       public boolean ordercancelationValidators(String ordercancelation) throws Exception {
+            if (ordercancelation == null || ordercancelation.trim().isEmpty()) {
+                throw new Exception("La cancelación de la orden no puede estar vacía.");
+            }
+                return true;
+            }
 }
